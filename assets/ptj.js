@@ -72,13 +72,15 @@ let modal = function (modalClick) {
 };
 
 modalBtns.forEach((modalBtn, i) => {
-  modalBtn.addEventListener("click", () => {
+  modalBtn.addEventListener("click", (e) => {
+    e.preventDefault();  // Prevent default anchor behavior
     modal(i);
   });
 });
 
 modalCloses.forEach((modalClose) => {
-  modalClose.addEventListener("click", () => {
+  modalClose.addEventListener("click", (e) => {
+    e.preventDefault();  // Prevent default behavior
     modalViews.forEach((modalView) => {
       modalView.classList.remove("active-modal");
     });

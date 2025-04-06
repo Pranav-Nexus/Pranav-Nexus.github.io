@@ -6,10 +6,157 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
+  <link rel="icon" type="image/jpg" href="assets/img/Pro.jpg" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/img/Pro.jpg" />
+  <link rel="mask-icon" href="assets/img/Pro.jpg" color="#4db5ff" />
+  <meta name="theme-color" content="#4db5ff" />
+  <link rel="shortcut icon" type="image/jpg" href="assets/img/Pro.jpg" />
   <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/newcss.css" />
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    /* Favicon masking for circular shape */
+    link[rel="icon"] {
+      border-radius: 50%;
+      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+      mask-image: radial-gradient(circle, white 100%, black 100%);
+    }
+
+    /* Custom Tooltip Styles */
+    .home__social-icon {
+      position: relative;
+    }
+
+    .home__social-icon::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 12px;
+      background-color: var(--first-color);
+      color: #fff;
+      font-size: 0.875rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .home__social-icon::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--first-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .home__social-icon:hover::before,
+    .home__social-icon:hover::after {
+      opacity: 1;
+      visibility: visible;
+      bottom: calc(100% + 10px);
+    }
+
+    .education-timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .education-timeline::before {
+      content: '';
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #4db5ff;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 60px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 26px;
+      top: 10px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #4db5ff;
+    }
+
+    .timeline-content {
+      background: rgba(77, 181, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .timeline-title {
+      color: var(--title-color);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-school {
+      color: var(--text-color);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-board {
+      color: var(--text-color-light);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-date {
+      color: #4db5ff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-link {
+      color: #4db5ff;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+
+    .timeline-link:hover {
+      gap: 0.75rem;
+    }
+
+    /* Add text justification styles */
+    .about__description,
+    .experience__description,
+    .portfolio__description,
+    .services__modal-service p,
+    .timeline-content p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  </style>
 </head>
 
 <body oncontextmenu="return false">
@@ -34,13 +181,13 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#qualification" class="nav__link">
-              <i class="uil uil-briefcase-alt nav__icon"></i>Qualification
+            <a href="#experience" class="nav__link">
+              <i class="uil uil-briefcase-alt nav__icon"></i>Experience
             </a>
           </li>
           <li class="nav__item">
-            <a href="#internship" class="nav__link">
-              <i class="uil uil-briefcase-alt nav__icon"></i>Internship
+            <a href="#qualifications" class="nav__link">
+              <i class="uil uil-briefcase-alt nav__icon"></i>Qualifications
             </a>
           </li>
           <li class="nav__item">
@@ -80,19 +227,22 @@
       <div class="home__container container grid">
         <div class="home__content grid">
           <div class="home__social">
-            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" class="home__social-icon">
+            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" rel="noopener" class="home__social-icon" data-tooltip="Connect with me on LinkedIn">
               <i class="uil uil-linkedin-alt home__icon"></i>
             </a>
 
-            <a href="https://github.com/Pranav-Nexus" target="_blank" class="home__social-icon">
+            <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" class="home__social-icon" data-tooltip="Check out my projects on GitHub">
               <i class="uil uil-github-alt home__icon"></i>
             </a>
 
-            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon" target="_blank"
-            rel="noopener">
-            <i class="fa-brands fa-instagram"></i>
-            <span class="sr-only">Instagram</span>
-          </a>
+            <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" class="home__social-icon" target="_blank" rel="noopener" data-tooltip="View my research publications on Google Scholar">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </a>
+
+            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon" target="_blank" rel="noopener" data-tooltip="Follow me on Instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span class="sr-only">Instagram</span>
+            </a>
           </div>
           <div class="home__img">
             <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +269,7 @@
             </h3>
             <p class="home__description">
               A fourth-year undergraduate engineering student at
-              <strong>Amrita Vishwa Vidhyapeetham </strong>, Banglore.
+              <a href="https://www.amrita.edu/campus/bengaluru" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;"><strong>Amrita Vishwa Vidhyapeetham</strong>, Banglore</a>.
             </p>
             <a href="#contact" class="button button--flex">
               Contact me<i class="uil uil-message button__icon"></i>
@@ -164,14 +314,13 @@
             </div>
 
             <div>
-              <span class="about__info-title">20+</span>
-              <span class="about__info-name">
-                Projects</span>
+              <span class="about__info-title">30+</span>
+              <span class="about__info-name">Projects</span>
             </div>
 
             <div>
-              <span class="about__info-title">1+</span>
-              <span class="about__info-name">Months <br />experience</span>
+              <span class="about__info-title">5+</span>
+              <span class="about__info-name">Publications</span>
             </div>
           </div>
 
@@ -184,7 +333,7 @@
       </div>
     </section>
 
-    <!--===================== SKILLS =====================-->
+    <!--===================== Skills =====================-->
 
     <section class="skills section" id="skills">
       <h2 class="section__title">Skills</h2>
@@ -193,7 +342,7 @@
       <div class="skills__container container grid">
         <div>
           <!--==================== Skill 1 =================-->
-          <div class="skills__content">
+          <div class="skills__content skills__close">
             <div class="skills__header">
               <i class="fas fa-pencil-ruler skills__icon"></i>
 
@@ -437,217 +586,256 @@
       </div>
     </section>
 
-    <!--==================== Qualifications ==================-->
+    <!--==================== Experience ==================-->
 
-    <section class="qualification__section service__section" id="qualification">
-      <h2 class="section__title">Qualification</h2>
-      <span class="section__subtitle">My personal journey</span>
+    <section class="experience section" id="experience">
+      <h2 class="section__title">Experience</h2>
+      <span class="section__subtitle">My professional experience</span>
 
-      <div class="qualification__container container grid services__container">
-        <div class="qualification__tabs">
-          <div class="qualification__button button--flex qualification__active" data-target="#education">
-            <i class="uil uil-graduation-cap qualification__icon"></i>
-            Education
+      <div class="experience__container container grid">
+        <!-- Future AGI Experience -->
+        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 2rem;">
+          <div style="flex-shrink: 0;">
+            <a href="https://futureagi.com/" target="_blank" rel="noopener">
+              <img src="assets/img/fagi.jpg" alt="Future AGI Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+            </a>
+          </div>
+          <div class="experience__data">
+            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Founder's Office, Technology</h3>
+            <div style="color: var(--text-color); margin-bottom: 4px;">
+              <span class="experience__subtitle" style="font-weight: 500;">
+                <a href="https://futureagi.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Future AGI</a>
+              </span>
+              <span style="color: var(--text-color-light)"> · Internship</span>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
+              Feb 2025 - Present · 3 mos
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+              Bengaluru, Karnataka, India · On-site
+            </div>
           </div>
         </div>
 
-        <div class="qualification__sections">
-          <!--====== Qualification Content 1 ======-->
-          <div class="qualification__content qualifiation__active services__content" data-content id="education">
-            <!--====== Qualification 1 ======-->
-            <div class="qualification__data">
-              <div>
-                <h3 class="qualification__title">GRADE X</h3>
-                <span class="qualification__subtitle">New Horizon Public School <br />C.B.S.E</span>
-                <div class="qualification__calender">
-                  <i class="uil uil-calendar-alt"></i>
-                  - 2019
-                </div>
-                <span class="button button--flex button--small button--link services__button">
-                  View More
-                  <i class="uil uil-arrow-right button__icon"></i>
-                </span>
-                <div class="services__modal">
-                  <div class="services__modal-content">
-                    <h4 class="services__modal-title">
-                      Class 10th Summary :
-                    </h4>
-                    <i class="uil uil-times services__modal-close"></i>
-                    <ul class="services__modal-services grid">
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>
-                          Subjects studied: Science, Maths, English,
-                          Social Sciences,IT & Sanskrit.
-                        </p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>Scored 95%</p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>Came runners up in inter-school Football</p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>Represented School in District Level Chess Competition</p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>Participated in School Level Science Exhibition</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <span class="qualification__rounder"></span>
-                <span class="qualification__line"></span>
-              </div>
+        <!-- AVIVO Experience -->
+        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="flex-shrink: 0;">
+            <a href="https://avivo.ai/" target="_blank" rel="noopener">
+              <img src="assets/img/avivoai.jpg" alt="AVIVO AI Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+            </a>
+          </div>
+          <div class="experience__data">
+            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Artificial Intelligence and Data Science Intern</h3>
+            <div style="color: var(--text-color); margin-bottom: 4px;">
+              <span class="experience__subtitle" style="font-weight: 500;">
+                <a href="https://avivo.ai/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">AVIVO</a>
+              </span>
+              <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
-
-            <!--====== Qualification 2 ======-->
-            <div class="qualification__data">
-              <div></div>
-
-              <div>
-                <span class="qualification__rounder"></span>
-                <span class="qualification__line"></span>
-              </div>
-              <div>
-                <h3 class="qualification__title">GRADE XII</h3>
-                <span class="qualification__subtitle">Narayana Junior College <br />Maharashtra H.S.C Board</span>
-                <div class="qualification__calender">
-                  <i class="uil uil-calendar-alt"></i>
-                  2019 - 2021
-                </div>
-                <span class="button button--flex button--small button--link services__button">
-                  View More
-                  <i class="uil uil-arrow-right button__icon"></i>
-                </span>
-                <div class="services__modal">
-                  <div class="services__modal-content">
-                    <h4 class="services__modal-title">
-                      Class 12th Summary :
-                    </h4>
-                    <i class="uil uil-times services__modal-close"></i>
-                    <ul class="services__modal-services grid">
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>
-                          Subjects studied: Physics, Chemistry, Maths,
-                          English, IT & Environmental Science.
-                        </p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__moda-icon"></i>
-                        <p>Scored 91%</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
+              Jan 2025 - Feb 2025 · 2 mos
             </div>
-
-            <!--====== Qualification 3 ======-->
-            <div class="qualification__data">
-              <div>
-                <h3 class="qualification__title">College</h3>
-                <span class="qualification__subtitle">Amrita Vishwa Vidhyapeetham, Banglore</span>
-                <div class="qualification__calender">
-                  <i class="uil uil-calendar-alt"></i>
-                  2021 - 2025
-                </div>
-                <span class="button button--flex button--small button--link services__button">
-                  View More
-                  <i class="uil uil-arrow-right button__icon"></i>
-                </span>
-                <div class="services__modal">
-                  <div class="services__modal-content">
-                    <h4 class="services__modal-title">College Summary :</h4>
-                    <i class="uil uil-times services__modal-close"></i>
-                    <ul class="services__modal-services grid">
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          Studying core subjects of AIE including DSA, Machine Learning,
-                          Design Analysis and of Algorithms, Operating
-                          systems, Computer architecture, Deep Learning, Reinforcement Learning .
-                        </p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__modal-icon"></i>
-                        <p>Scored an aggregate of 9.18 CGPA till now.</p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          Treasurer (Jan – June, 2024),
-                          Sergeant at Arms (July – Dec, 2023),
-                          Toastmaster Amrita Bengaluru
-                        </p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          Vice President, Amrita Management & Leadership (A.M.A.L) Club (2023 - 2024)
-                        </p>
-                      </li>
-                      <li class="services__modal-service">
-                        <i class="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          Core Member –
-                          Geeks for Geeks Student Chapter,
-                          Amrita Bengaluru
-
-                        </p>
-                      </li>
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <span class="qualification__rounder"></span>
-                <!--<span class="qualification__line"></span>-->
-              </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+              Austin, Texas, United States · Remote
             </div>
+            <p class="experience__description" style="font-size: 0.95rem; line-height: 1.4;">
+              I specialized in managing and optimizing vector databases such as ChromaDB and Pinecone to enhance the data retrieval capabilities of AI Applications. My role involved developing scalable AI solutions using frameworks like LangChain and LlamaIndex, demonstrating my expertise in generative AI technologies. I leveraged AWS cloud services to deploy large language models (LLMs) and vector databases, ensuring the scalability and reliability of AI systems.<br><br>
+              
+              As part of this role, I led the development of an OCR-based Medical EOB processing engine, managing its full lifecycle and integration into the existing product. I utilized AWS for deployment and JIRA to track development progress, manage sprints, and drive iterative improvements.<br><br>
+              
+            </p>
+          </div>
+        </div>
+
+        <!-- ACC Experience -->
+        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start;">
+          <div style="flex-shrink: 0;">
+            <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener">
+              <img src="assets/img/acc.jpg" alt="Applied Cloud Computing Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+            </a>
+          </div>
+          <div class="experience__data">
+            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Machine Learning Intern</h3>
+            <div style="color: var(--text-color); margin-bottom: 4px;">
+              <span class="experience__subtitle" style="font-weight: 500;">
+                <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Applied Cloud Computing</a>
+              </span>
+              <span style="color: var(--text-color-light)"> · Internship</span>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
+              Jul 2023 · 1 mo
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+              Mumbai, Maharashtra, India · On-site
+            </div>
+            <p class="experience__description" style="font-size: 0.95rem; line-height: 1.4;">
+              🔍 Internship Impact: Entrusted with a pivotal role in the an OCR project. This initiative focused on
+              automating the analysis of pay slips and bank statements, driving efficiency in financial data processing
+              and enhancing customer interactions.<br><br>
+              
+              🤝 Collaborative Endeavors: Throughout the internship, I thrived in collaborative environments,
+              working alongside peers and interns to exchange insights and refine the model. Regular interactions with
+              the project team enabled seamless progress tracking and hurdle resolution.<br><br>
+              
+              🏁 Internship Achievement: The culmination of my internship marked a significant milestone as I
+              successfully completed the development of the OCR model. This achievement empowers the project to move
+              forward.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!--==================== Internship ==================-->
+    <!--==================== Qualifications ==================-->
 
-    <section class="internship section" id="internship">
-      <h2 class="section__title">Internship</h2>
-      <span class="section__subtitle">My professional experience</span>
+    <section class="qualification section" id="qualifications">
+      <h2 class="section__title">Qualifications</h2>
+      <span class="section__subtitle">My educational journey</span>
 
-      <div class="internship__container container grid">
-        <div class="internship__content">
-          <div class="internship__data">
-            <h3 class="internship__title">Machine Learning Intern</h3>
-            <span class="internship__subtitle">Applied Cloud Computing</span>
-            <div class="internship__calendar">
+      <div class="education-timeline">
+        <!-- College -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">College</h3>
+            <div class="timeline-school"><a href="https://www.amrita.edu/campus/bengaluru" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Amrita Vishwa Vidhyapeetham, Banglore</a></div>
+            <div class="timeline-date">
               <i class="uil uil-calendar-alt"></i>
-              Jul 2023 · 1 month
+              2021 - 2025
             </div>
-            <p class="internship__description">
-              🔍 Internship Impact: Entrusted with a pivotal role in the an OCR project. This initiative focused on
-              automating the analysis of pay slips and bank statements, driving efficiency in financial data processing
-              and enhancing customer interactions.<br>
+            <a href="javascript:void(0)" class="timeline-link services__button">
+              View More
+              <i class="uil uil-arrow-right"></i>
+            </a>
+            <div class="services__modal">
+              <div class="services__modal-content">
+                <h4 class="services__modal-title">College Summary :</h4>
+                <i class="uil uil-times services__modal-close"></i>
+                <ul class="services__modal-services grid">
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Studying core subjects of AIE including DSA, Machine Learning,
+                      Design Analysis and of Algorithms, Operating
+                      systems, Computer architecture, Deep Learning, Reinforcement Learning.
+                    </p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Scored an aggregate of 9.18 CGPA till now.</p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Treasurer (Jan – June, 2024),
+                      Sergeant at Arms (July – Dec, 2023),
+                      Toastmaster Amrita Bengaluru
+                    </p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Vice President, Amrita Management & Leadership
+                      (A.M.A.L) Club (2023 - 2024)
+                    </p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Core Member –
+                      Geeks for Geeks Student Chapter,
+                      Amrita Bengaluru
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              🤝 Collaborative Endeavors: Throughout the internship, I thrived in collaborative environments, working
-              alongside peers and interns to exchange insights and refine the model. Regular interactions with the
-              project team enabled seamless progress tracking and hurdle resolution.<br>
+        <!-- Grade XII -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">GRADE XII</h3>
+            <div class="timeline-school"><a href="https://www.narayanajuniorcolleges.com/maharashtra/thane-west/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Narayana Junior College</a></div>
+            <div class="timeline-board">Maharashtra H.S.C Board</div>
+            <div class="timeline-date">
+              <i class="uil uil-calendar-alt"></i>
+              2019 - 2021
+            </div>
+            <a href="javascript:void(0)" class="timeline-link services__button">
+              View More
+              <i class="uil uil-arrow-right"></i>
+            </a>
+            <div class="services__modal">
+              <div class="services__modal-content">
+                <h4 class="services__modal-title">Class 12th Summary :</h4>
+                <i class="uil uil-times services__modal-close"></i>
+                <ul class="services__modal-services grid">
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Subjects studied: Physics, Chemistry, Maths,
+                      English, IT & Environmental Science.
+                    </p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Scored 91%</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              🏁 Internship Achievement: The culmination of my internship marked a significant milestone as I
-              successfully completed the development of the OCR model. This achievement empowers the project to move
-              forward.<br>
-            </p>
+        <!-- Grade X -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">GRADE X</h3>
+            <div class="timeline-school"><a href="https://www.nhpsairoli.com/?utm_source=GMB&utm_medium=Organic&utm_campaign=Website" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">New Horizon Public School</a></div>
+            <div class="timeline-board">C.B.S.E</div>
+            <div class="timeline-date">
+              <i class="uil uil-calendar-alt"></i>
+              - 2019
+            </div>
+            <a href="javascript:void(0)" class="timeline-link services__button">
+              View More
+              <i class="uil uil-arrow-right"></i>
+            </a>
+            <div class="services__modal">
+              <div class="services__modal-content">
+                <h4 class="services__modal-title">Class 10th Summary :</h4>
+                <i class="uil uil-times services__modal-close"></i>
+                <ul class="services__modal-services grid">
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>
+                      Subjects studied: Science, Maths, English,
+                      Social Sciences, IT & Sanskrit.
+                    </p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Scored 95%</p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Came runners up in inter-school Football</p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Represented School in District Level Chess Competition</p>
+                  </li>
+                  <li class="services__modal-service">
+                    <i class="uil uil-check-circle services__modal-icon"></i>
+                    <p>Participated in School Level Science Exhibition</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -656,24 +844,21 @@
     <!--=================== Portfolio ===================-->
     <section class="portfolio section" id="portfolio">
       <h2 class="section__title">Projects</h2>
-      <span class="section__subtitle">Most recent work</span>
 
       <div class="portfolio__container container swiper-container">
         <div class="swiper-wrapper">
-          <!-- ------------------------portfollio 1-------------------- -->
+          <!-- Project 1 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio5.png" class="portfolio__img" />
-
+            <img src="assets/img/portfolio5.png" class="portfolio__img" alt="On-Device Translation Project Screenshot" />
             <div class="portfolio__data">
-              <h3 class="portfolio__title">
-                On – Device Translation of Dynamically Typed & Interpreted Languages
-
-              </h3>
+              <h3 class="portfolio__title">On-Device Translation of Dynamically Typed & Interpreted Languages</h3>
               <p class="portfolio__description">
-                Translating Between 2 majorly used programming languages which do not share a common kernel, enabling
-                more collaboration.<br>
-                Published in the 15th International Conference on Computing,Communication and Networking Technologies
-                (IIT Mandi).<br>
+                A novel approach to translate between programming languages without a common kernel. Enables seamless code conversion and collaboration between different language ecosystems.<br><br>
+                <strong>Key Features:</strong><br>
+                • Real-time translation between Python and JavaScript<br>
+                • Preserves code semantics and functionality<br>
+                • Handles dynamic typing and interpretation<br><br>
+                <strong>Publication:</strong> 15th International Conference on Computing, Communication and Networking Technologies (IIT Mandi)
               </p>
               <a href="https://github.com/Pranav-Nexus/On-Device-Translation-of-Dynamically-Typed-Interpreted-Languages" class="button button--flex button--small portfolio__button">
                 GitHub Repository
@@ -681,98 +866,96 @@
               </a>
             </div>
           </div>
-          <!-- ------------------------portfollio 2-------------------- -->
 
+          <!-- Project 2 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio1.png" class="portfolio__img" />
-
+            <img src="assets/img/portfolio1.png" class="portfolio__img" alt="HTTP C2 Analysis Project Screenshot" />
             <div class="portfolio__data">
-              <h3 class="portfolio__title">
-                HTTP C2 Analysis and Detection Using MongoDB
-              </h3>
+              <h3 class="portfolio__title">HTTP C2 Analysis and Detection Using MongoDB</h3>
               <p class="portfolio__description">
-                Enhanced RITA with C2 and TLS techniques for improved cybersecurity.<br>
-                Published in the 3rd International Conference on Advances in
-                Computing, Communication and Applied Informatics, 2024<br>
-
+                Enhanced cybersecurity framework integrating advanced C2 and TLS detection techniques with MongoDB.<br><br>
+                <strong>Key Features:</strong><br>
+                • Real-time traffic analysis<br>
+                • Advanced pattern detection<br>
+                • MongoDB integration for efficient data processing<br><br>
+                <strong>Publication:</strong> 3rd International Conference on Advances in Computing, Communication and Applied Informatics, 2024
               </p>
-              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB"
-                class="button button--flex button--small portfolio__button">
-                GitHub Repository
-                <i class="uil uil-external-link-alt button__icon"></i>
-              </a>
-
-            </div>
-          </div>
-
-          <!-- ------------------------portfollio 3-------------------- -->
-          <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio2.png" class="portfolio__img" />
-
-            <div class="portfolio__data">
-              <h3 class="portfolio__title">Target-Preserved-Image-Generation</h3>
-              <p class="portfolio__description">
-                Customizes Images Generated from Text Prompts, allowing Seamless Feature Transfer and Precise
-                Positioning.
-              </p>
-              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation"
-                class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB" class="button button--flex button--small portfolio__button">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
             </div>
           </div>
-          <!-- ------------------------portfollio 4-------------------- -->
-          <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio3.png" class="portfolio__img" />
 
+          <!-- Project 3 -->
+          <div class="portfolio__content grid swiper-slide">
+            <img src="assets/img/portfolio2.png" class="portfolio__img" alt="Target Preserved Image Generation Project Screenshot" />
             <div class="portfolio__data">
-              <h3 class="portfolio__title">TRASIS : An Algorithmic Trading Bot</h3>
+              <h3 class="portfolio__title">Target-Preserved Image Generation</h3>
               <p class="portfolio__description">
-                Moving averages, commonly used in stock trading, help identify trends and support/resistance levels.<br>
-                TRASIS, aims to maximize profits using algorithmic trading strategies.<br>
-                Algorithmic trading, driven by computer programs, capitalizes on market inefficiencies. <br>
-                Moving averages play a key role due to their ease of calculation and trend-spotting abilities<br>
+                Advanced AI system for generating customized images from text prompts while maintaining specific features.<br><br>
+                <strong>Key Features:</strong><br>
+                • Precise feature transfer<br>
+                • Position-aware generation<br>
+                • Custom attribute preservation<br>
+                • High-quality output generation
               </p>
-              <a href="https://github.com/Pranav-Nexus/TRASIS"
-                class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation" class="button button--flex button--small portfolio__button">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
-
             </div>
           </div>
 
-          <!-- ------------------------portfollio 5-------------------- -->
+          <!-- Project 4 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio4.png" class="portfolio__img" />
+            <img src="assets/img/portfolio3.png" class="portfolio__img" alt="TRASIS Trading Bot Project Screenshot" />
+            <div class="portfolio__data">
+              <h3 class="portfolio__title">TRASIS: An Algorithmic Trading Bot</h3>
+              <p class="portfolio__description">
+                Advanced trading system leveraging algorithmic strategies for market analysis and automated trading.<br><br>
+                <strong>Key Features:</strong><br>
+                • Moving average-based analysis<br>
+                • Automated trading execution<br>
+                • Market inefficiency detection<br>
+                • Real-time trend analysis
+              </p>
+              <a href="https://github.com/Pranav-Nexus/TRASIS" class="button button--flex button--small portfolio__button">
+                GitHub Repository
+                <i class="uil uil-external-link-alt button__icon"></i>
+              </a>
+            </div>
+          </div>
 
+          <!-- Project 5 -->
+          <div class="portfolio__content grid swiper-slide">
+            <img src="assets/img/portfolio4.png" class="portfolio__img" alt="Network Intrusion Detection System Project Screenshot" />
             <div class="portfolio__data">
               <h3 class="portfolio__title">Network Intrusion Detection System</h3>
               <p class="portfolio__description">
-                Network Intrusion Detection Systems (NIDS) play a crucial role in safeguarding computer networks.
-                They spot patterns, signatures, and rule violations. Recently, Machine Learning and Deep Learning have
-                emerged as powerful tools for network intrusion detection.<br>
-                This implementation covers SVM, Decision Tree, Random Forest, MLP, K-Nearest Neighbour, and regression
-                techniques.<br>
-                <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning"
-                  class="button button--flex button--small portfolio__button">
-                  GitHub Repository
-                  <i class="uil uil-external-link-alt button__icon"></i>
-                </a>
-
+                Comprehensive ML-based system for detecting and preventing network intrusions.<br><br>
+                <strong>Key Features:</strong><br>
+                • Multiple ML models integration (SVM, Random Forest, MLP)<br>
+                • Real-time threat detection<br>
+                • Pattern recognition and analysis<br>
+                • Advanced classification techniques
+              </p>
+              <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning" class="button button--flex button--small portfolio__button">
+                GitHub Repository
+                <i class="uil uil-external-link-alt button__icon"></i>
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- add arrows -->
+        <!-- Navigation arrows -->
         <div class="swiper-button-next">
           <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
         </div>
         <div class="swiper-button-prev">
           <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
         </div>
-        <!-- add pagination -->
+        <!-- Pagination -->
         <div class="swiper-pagination"></div>
       </div>
     </section>
@@ -817,19 +1000,19 @@
         <form action="" class="contact__form grid">
           <div class="contact__inputs grid">
             <div class="contact__content">
-              <label for="" class="content__label">Name</label>
-              <input type="text" class="contact__input" />
+              <label for="name" class="content__label">Name</label>
+              <input type="text" id="name" name="name" class="contact__input" placeholder="Enter your name" required />
             </div>
 
             <div class="contact__content">
-              <label for="" class="content__label">Email</label>
-              <input type="Email" class="contact__input" />
+              <label for="email" class="content__label">Email</label>
+              <input type="email" id="email" name="email" class="contact__input" placeholder="Enter your email" required />
             </div>
           </div>
 
           <div class="contact__content">
-            <label for="" class="content__label">Message</label>
-            <textarea name="" id="" cols="0" rows="7" class="contact__input"></textarea>
+            <label for="message" class="content__label">Message</label>
+            <textarea id="message" name="message" cols="0" rows="7" class="contact__input" placeholder="Enter your message" required></textarea>
           </div>
 
 
@@ -856,15 +1039,16 @@
 
         <ul class="footer__links">
           <li>
-            <a href="#qualification" class="footer__link">Qualification</a>
+            <a href="#experience" class="footer__link">Experience</a>
+          </li>
+          <li>
+            <a href="#qualifications" class="footer__link">Qualifications</a>
           </li>
           <li>
             <a href="#portfolio" class="footer__link">Portfolio</a>
           </li>
           <li>
-          <li>
             <a href="#contact" class="footer__link">Contact-Me</a>
-          </li>
           </li>
         </ul>
 

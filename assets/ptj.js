@@ -113,14 +113,16 @@ function scrollActive() {
     const sectionTop = current.offsetTop - 50;
     sectionId = current.getAttribute("id");
 
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.add("active-link");
-    } else {
-      document
-        .querySelector(".nav__menu a[href*=" + sectionId + "]")
-        .classList.remove("active-link");
+    // Find the corresponding navigation link within the nav__menu
+    const navLink = document.querySelector(".nav__menu a[href*=" + sectionId + "]");
+
+    // Check if the navigation link exists before trying to access classList
+    if (navLink) {
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLink.classList.add("active-link");
+      } else {
+        navLink.classList.remove("active-link");
+      }
     }
   });
 }

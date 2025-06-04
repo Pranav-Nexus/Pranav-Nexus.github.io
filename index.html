@@ -6,35 +6,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
-  <link rel="icon" type="image/jpg" href="assets/img/Pro.jpg" sizes="32x32" />
-  <link rel="apple-touch-icon" href="assets/img/Pro.jpg" />
-  <link rel="mask-icon" href="assets/img/Pro.jpg" color="#4db5ff" />
+  <link rel="icon" type="image/png" href="assets/img/Website Logo.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/img/Website Logo.png" />
+  <link rel="mask-icon" href="assets/img/Website Logo.png" color="#4db5ff" />
   <meta name="theme-color" content="#4db5ff" />
-  <link rel="shortcut icon" type="image/jpg" href="assets/img/Pro.jpg" />
+  <link rel="shortcut icon" type="image/png" href="assets/img/Website Logo.png" />
   <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
   <link rel="stylesheet" href="assets/newcss.css" />
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     /* Favicon masking for circular shape */
     link[rel="icon"] {
       border-radius: 50%;
       -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-      mask-image: radial-gradient(circle, white 100%, black 100%);
+      mask-image: radial-gradient(circle, white 100%, black 100%, black 100%);
     }
 
-    /* Custom Tooltip Styles */
-    .home__social-icon {
-      position: relative;
-    }
-
+    /* General tooltip styles */
     .home__social-icon::before {
       content: attr(data-tooltip);
       position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 8px 12px;
+      padding: 8px 12px; /* Adjust padding for better spacing */
       background-color: var(--first-color);
       color: #fff;
       font-size: 0.875rem;
@@ -50,11 +44,7 @@
     .home__social-icon::after {
       content: '';
       position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
       border: 6px solid transparent;
-      border-top-color: var(--first-color);
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
@@ -64,7 +54,52 @@
     .home__social-icon:hover::after {
       opacity: 1;
       visibility: visible;
+    }
+
+    /* LinkedIn tooltip above */
+    .home__social-icon.linkedin::before {
       bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .home__social-icon.linkedin::after {
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--first-color);
+    }
+
+    /* GitHub and Google Scholar tooltips to the left */
+    .home__social-icon.github::before,
+    .home__social-icon.scholar::before {
+      top: 50%;
+      right: calc(100% + 10px);
+      transform: translateY(-50%);
+      text-align: left;
+    }
+
+    .home__social-icon.github::after,
+    .home__social-icon.scholar::after {
+      top: 50%;
+      right: calc(100% + 4px);
+      transform: translateY(-50%);
+      border-right-color: var(--first-color);
+    }
+
+    /* Instagram tooltip below */
+    .home__social-icon.instagram::before {
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .home__social-icon.instagram::after {
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--first-color);
     }
 
     .education-timeline {
@@ -156,25 +191,188 @@
       text-align: justify;
       text-justify: inter-word;
     }
+
+    /* Blog section styles */
+    .blog__container {
+      padding: 2rem 0;
+    }
+
+    .blog__content {
+      background: var(--container-color);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: .3s;
+    }
+
+    .blog__content:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-0.25rem);
+    }
+
+    .blog__title {
+      font-size: var(--h3-font-size);
+      margin-bottom: 1rem;
+      color: var(--title-color);
+    }
+
+    .blog__description {
+      font-size: var(--normal-font-size);
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    .blog__button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--first-color);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-medium);
+      transition: .3s;
+    }
+
+    .blog__button:hover {
+      background-color: var(--first-color-alt);
+      transform: translateY(-0.25rem);
+    }
+
+    /* Contact section styles */
+    .contact__container {
+      row-gap: 3rem;
+    }
+
+    .contact__information {
+      display: flex;
+      margin-bottom: var(--mb-2);
+    }
+
+    .contact__icon {
+      font-size: 2rem;
+      color: var(--first-color);
+      margin-right: var(--mb-0-75);
+    }
+
+    .contact__title {
+      font-size: var(--h3-font-size);
+      font-weight: var(--font-medium);
+    }
+
+    .contact__subtitle {
+      font-size: var(--small-font-size);
+      color: var(--text-color-light);
+    }
+
+    .contact__form {
+      position: relative;
+    }
+
+    .contact__form-div {
+      position: relative;
+      height: 4rem;
+      margin-bottom: var(--mb-2);
+    }
+
+    .contact__form-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--text-color-light);
+      background: none;
+      color: var(--text-color);
+      outline: none;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      z-index: 1;
+    }
+
+    .contact__form-tag {
+      position: absolute;
+      top: -0.75rem;
+      left: 1.25rem;
+      font-size: var(--smaller-font-size);
+      padding: 0.25rem;
+      background-color: var(--body-color);
+      z-index: 10;
+    }
+
+    .contact__form-area {
+      height: 11rem;
+    }
+
+    .contact__form-area textarea {
+      resize: none;
+    }
+
+    .contact__form-input:focus {
+      border-color: var(--first-color);
+    }
+
+    .contact__form-input:focus + .contact__form-tag {
+      color: var(--first-color);
+    }
+
+    .footer__bg {
+      background: var(--container-color);
+      border-top: 1px solid var(--text-color-light);
+      width: 100%;
+    }
+
+    .footer__container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer__title {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .footer__subtitle {
+      font-size: 1.1rem;
+      color: var(--text-color-light);
+    }
+
+    .footer__links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer__links a:hover {
+      color: var(--first-color);
+    }
+
+    .footer__copy {
+      font-size: 1rem;
+      color: var(--text-color-light);
+    }
+
+    .about__info a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .about__info a:hover {
+      color: var(--first-color);
+    }
   </style>
 </head>
 
 <body oncontextmenu="return false">
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="#" class="nav__logo">Pranav</a>
-      <div class="nav__menu" id="nav-menu">
-        <ul class="nav__list grid">
-          <li class="nav__item">
-            <a href="#home" class="nav__link active-link">
-              <i class="uil uil-estate nav__icon"></i>Home
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#about" class="nav__link">
-              <i class="uil uil-user nav__icon"></i>About
-            </a>
-          </li>
+      <a href="#about" class="nav__logo">Pranav</a>
+      <div class="nav__menu" id="nav-menu" style="margin-left: 0;">
+        <ul class="nav__list grid" style="margin-left: 0;">
           <li class="nav__item">
             <a href="#skills" class="nav__link">
               <i class="uil uil-file-alt nav__icon"></i>Skills
@@ -191,8 +389,18 @@
             </a>
           </li>
           <li class="nav__item">
+            <a href="#certifications" class="nav__link">
+              <i class="uil uil-award nav__icon"></i>Certifications
+            </a>
+          </li>
+          <li class="nav__item">
             <a href="#portfolio" class="nav__link">
               <i class="uil uil-scenery nav__icon"></i>Projects
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#blog" class="nav__link">
+              <i class="uil uil-document nav__icon"></i>Blog
             </a>
           </li>
           <li class="nav__item">
@@ -227,21 +435,20 @@
       <div class="home__container container grid">
         <div class="home__content grid">
           <div class="home__social">
-            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" rel="noopener" class="home__social-icon" data-tooltip="Connect with me on LinkedIn">
+            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" rel="noopener" class="home__social-icon linkedin" data-tooltip="Connect with me on LinkedIn">
               <i class="uil uil-linkedin-alt home__icon"></i>
             </a>
 
-            <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" class="home__social-icon" data-tooltip="Check out my projects on GitHub">
+            <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" class="home__social-icon github" data-tooltip="Check out my projects on GitHub">
               <i class="uil uil-github-alt home__icon"></i>
             </a>
 
-            <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" class="home__social-icon" target="_blank" rel="noopener" data-tooltip="View my research publications on Google Scholar">
-              <i class="fa-solid fa-graduation-cap"></i>
+            <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" class="home__social-icon scholar" target="_blank" rel="noopener" data-tooltip="View my research publications on Google Scholar">
+              <i class="uil uil-graduation-cap"></i>
             </a>
 
-            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon" target="_blank" rel="noopener" data-tooltip="Follow me on Instagram">
-              <i class="fa-brands fa-instagram"></i>
-              <span class="sr-only">Instagram</span>
+            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon instagram" target="_blank" rel="noopener" data-tooltip="Follow me on Instagram">
+              <i class="uil uil-instagram"></i>
             </a>
           </div>
           <div class="home__img">
@@ -309,18 +516,22 @@
 
           <div class="about__info">
             <div>
-              <span class="about__info-title">9.18</span>
+              <span class="about__info-title">9.11</span>
               <span class="about__info-name">Aggregate <br />CGPA</span>
             </div>
 
             <div>
-              <span class="about__info-title">30+</span>
-              <span class="about__info-name">Projects</span>
+              <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">
+                <span class="about__info-title">30+</span>
+                <span class="about__info-name">Projects</span>
+              </a>
             </div>
 
             <div>
-              <span class="about__info-title">5+</span>
-              <span class="about__info-name">Publications</span>
+              <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">
+                <span class="about__info-title">5+</span>
+                <span class="about__info-name">Publications</span>
+              </a>
             </div>
           </div>
 
@@ -337,7 +548,7 @@
 
     <section class="skills section" id="skills">
       <h2 class="section__title">Skills</h2>
-      <span class="section__subtitle">My technical level</span>
+      <br><br>
 
       <div class="skills__container container grid">
         <div>
@@ -345,14 +556,11 @@
           <div class="skills__content skills__close">
             <div class="skills__header">
               <i class="fas fa-pencil-ruler skills__icon"></i>
-
               <div>
                 <h1 class="skills__title">Programming Languages</h1>
               </div>
-
               <i class="uil uil-angle-down skills__arrow"></i>
             </div>
-
             <div class="skills__list grid">
               <div class="skills__data">
                 <div class="skills__titles">
@@ -390,40 +598,32 @@
           <div class="skills__content skills__close">
             <div class="skills__header">
               <i class="fas fa-code skills__icon"></i>
-
               <div>
                 <h1 class="skills__title">IT Constructs</h1>
               </div>
-
               <i class="uil uil-angle-down skills__arrow"></i>
             </div>
-
             <div class="skills__list grid">
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">DBMS</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">DS & Algorithms</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">OOPS</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">OS</h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Networking</h3>
@@ -434,7 +634,6 @@
                   <h3 class="skills__name"> Machine Learning & Data Mining</h3>
                 </div>
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Artificial Intelligence Foundation</h3>
@@ -465,11 +664,9 @@
                   <h3 class="skills__name">Ethics in AI</h3>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
         <div>
           <!--==================== Skill 3 =================-->
           <div class="skills__content skills__close">
@@ -478,108 +675,141 @@
               <div>
                 <h1 class="skills__title">Technologies</h1>
               </div>
-
               <i class="uil uil-angle-down skills__arrow"></i>
             </div>
-
             <div class="skills__list grid">
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Git</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">MongoDB</h3>
                 </div>
-
               </div>
-              
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">NextJs</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">NodeJs</h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Tailwind</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">MySQL</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">TensorFlow</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">PyTorch</h3>
                 </div>
-
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Keras</h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Apache Spark</h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Hadoop </h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">MATLAB </h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">OpenCv</h3>
                 </div>
-
               </div>
-
               <div class="skills__data">
                 <div class="skills__titles">
                   <h3 class="skills__name">Scikit-learn</h3>
                 </div>
-
               </div>
-
-
-
-
-
-
+            </div>
+          </div>
+          <!--==================== Skill 4: Product Management, Analytics & Tooling =================-->
+          <div class="skills__content skills__close">
+            <div class="skills__header">
+              <i class="uil uil-chart-line skills__icon"></i>
+              <div>
+                <h1 class="skills__title">Product Management, Analytics & Tooling</h1>
+              </div>
+              <i class="uil uil-angle-down skills__arrow"></i>
+            </div>
+            <div class="skills__list grid">
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Product Strategy & Roadmapping</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Product Requirement Documents (PRDs)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">User Analytics & Behavior Tracking (Mixpanel, Google Analytics)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Go-to-Market Planning</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Stakeholder Communication</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">User Onboarding & Retention (Appcues, Custom UI)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Experimentation & A/B Testing (Google Optimize, Appcues)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Agile Product Execution (Jira, Notion)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">SEO & AI Search Engine Optimization (Google Search Console, Bing Webmaster Tools)</h3>
+                </div>
+              </div>
+              <div class="skills__data">
+                <div class="skills__titles">
+                  <h3 class="skills__name">Performance Marketing Tools (Google Ads, Meta Ads, Reddit Ads, X Ads)</h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -587,111 +817,107 @@
     </section>
 
     <!--==================== Experience ==================-->
-
     <section class="experience section" id="experience">
       <h2 class="section__title">Experience</h2>
       <span class="section__subtitle">My professional experience</span>
-
       <div class="experience__container container grid">
         <!-- Future AGI Experience -->
-        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 2rem;">
+        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
           <div style="flex-shrink: 0;">
             <a href="https://futureagi.com/" target="_blank" rel="noopener">
-              <img src="assets/img/fagi.jpg" alt="Future AGI Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+              <img src="assets/img/fagi.jpg" alt="Future AGI Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Founder's Office, Technology</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Founder's Office, Technology & Product</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
                 <a href="https://futureagi.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Future AGI</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
-              Feb 2025 - Present · 3 mos
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 4px;">
+              Feb 2025 - Present · 5 mos
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 12px;">
               Bengaluru, Karnataka, India · On-site
+            </div>
+            <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
+
+              <b>Drove product strategy and execution at the intersection of AI and early-stage innovation, delivering POCs, boosting user retention, and securing the company's first paid client.</b><br><br>
+              <b>Product Ownership & Execution:</b> Spearheaded the development of multiple product proof-of-concepts, working cross-functionally with product and engineering teams to validate hypotheses and accelerate decision-making. Initiated and built a Mixpanel analytics framework to enable data-informed iteration and measure user engagement effectively.<br><br>
+              <b>User Experience & Growth:</b> Revamped the onboarding experience using Appcues, resulting in notable improvements in user activation and retention. Authored detailed Product Requirement Documents (PRDs) and user documentation, aligning product workflows with user pain points and business needs to improve self-serve adoption.<br><br>
+              <b>Go-to-Market Impact:</b> Led end-to-end client demo creation, directly contributing to the acquisition of multiple pilot users and securing Future AGI's first paid client. Additionally, played a critical role during the press release launch by conducting pre-release QA and ensuring product stability during peak visibility.
             </div>
           </div>
         </div>
-
         <!-- AVIVO Experience -->
-        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
           <div style="flex-shrink: 0;">
             <a href="https://avivo.ai/" target="_blank" rel="noopener">
-              <img src="assets/img/avivoai.jpg" alt="AVIVO AI Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+              <img src="assets/img/avivoai.jpg" alt="AVIVO AI Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Artificial Intelligence and Data Science Intern</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Artificial Intelligence and Data Science Engineer</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
                 <a href="https://avivo.ai/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">AVIVO</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 4px;">
               Jan 2025 - Feb 2025 · 2 mos
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 12px;">
               Austin, Texas, United States · Remote
             </div>
-            <p class="experience__description" style="font-size: 0.95rem; line-height: 1.4;">
-              I specialized in managing and optimizing vector databases such as ChromaDB and Pinecone to enhance the data retrieval capabilities of AI Applications. My role involved developing scalable AI solutions using frameworks like LangChain and LlamaIndex, demonstrating my expertise in generative AI technologies. I leveraged AWS cloud services to deploy large language models (LLMs) and vector databases, ensuring the scalability and reliability of AI systems.<br><br>
+            <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
               
-              As part of this role, I led the development of an OCR-based Medical EOB processing engine, managing its full lifecycle and integration into the existing product. I utilized AWS for deployment and JIRA to track development progress, manage sprints, and drive iterative improvements.<br><br>
-              
-            </p>
+              <b>Engineered scalable generative AI infrastructure by integrating LLMs and vector databases, and led the development of an OCR-based medical document processing engine.</b><br><br>
+              <b>Technical Contributions:</b> Focused on optimizing vector databases such as ChromaDB and Pinecone to strengthen data retrieval for generative AI applications. Developed scalable solutions using LangChain and LlamaIndex, deploying them using AWS to ensure reliability and scalability.<br><br>
+              <b>System Development & Ownership:</b> Led the complete lifecycle development of an OCR-based Medical EOB processing engine, from system design to integration. Utilized AWS for deployment and JIRA for agile project tracking, ensuring continuous delivery and improvement.<br><br>
+              <b>AI Infrastructure & Deployment:</b> Integrated vector databases with LLM pipelines and optimized performance in cloud-based environments, ensuring seamless functionality and reduced latency in real-world use cases.
+            </div>
           </div>
         </div>
-
         <!-- ACC Experience -->
-        <div class="experience__content" style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
           <div style="flex-shrink: 0;">
             <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener">
-              <img src="assets/img/acc.jpg" alt="Applied Cloud Computing Logo" style="width: 48px; height: 48px; object-fit: contain;" />
+              <img src="assets/img/acc.jpg" alt="Applied Cloud Computing Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.1rem; margin-bottom: 4px;">Machine Learning Intern</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Machine Learning Engineer</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
                 <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Applied Cloud Computing</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 4px;">
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 4px;">
               Jul 2023 · 1 mo
             </div>
-            <div style="font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 12px;">
+            <div style="font-size: 0.95rem; color: var(--text-color-light); margin-bottom: 12px;">
               Mumbai, Maharashtra, India · On-site
             </div>
-            <p class="experience__description" style="font-size: 0.95rem; line-height: 1.4;">
-              🔍 Internship Impact: Entrusted with a pivotal role in the an OCR project. This initiative focused on
-              automating the analysis of pay slips and bank statements, driving efficiency in financial data processing
-              and enhancing customer interactions.<br><br>
-              
-              🤝 Collaborative Endeavors: Throughout the internship, I thrived in collaborative environments,
-              working alongside peers and interns to exchange insights and refine the model. Regular interactions with
-              the project team enabled seamless progress tracking and hurdle resolution.<br><br>
-              
-              🏁 Internship Achievement: The culmination of my internship marked a significant milestone as I
-              successfully completed the development of the OCR model. This achievement empowers the project to move
-              forward.
-            </p>
+            <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
+
+              <b>Delivered an end-to-end OCR solution for financial document analysis, contributing to automation and accuracy in customer data workflows.</b><br><br>
+              <b>Internship Impact:</b> Entrusted with a pivotal role in an OCR project. This initiative focused on automating the analysis of pay slips and bank statements, driving efficiency in financial data processing and enhancing customer interactions.<br><br>
+              <b>Collaborative Endeavors:</b> Throughout the internship, I thrived in collaborative environments, working alongside peers and interns to exchange insights and refine the model. Regular interactions with the project team enabled seamless progress tracking and hurdle resolution.<br><br>
+              <b>Internship Achievement:</b> The culmination of my internship marked a significant milestone as I successfully completed the development of the OCR model. This achievement empowers the project to move forward.
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!--==================== Qualifications ==================-->
-
     <section class="qualification section" id="qualifications">
       <h2 class="section__title">Qualifications</h2>
       <span class="section__subtitle">My educational journey</span>
-
       <div class="education-timeline">
         <!-- College -->
         <div class="timeline-item">
@@ -714,45 +940,29 @@
                 <ul class="services__modal-services grid">
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Studying core subjects of AIE including DSA, Machine Learning,
-                      Design Analysis and of Algorithms, Operating
-                      systems, Computer architecture, Deep Learning, Reinforcement Learning.
-                    </p>
+                    <p>Studying core subjects of AI including DSA, Machine Learning, Design Analysis and of Algorithms, Operating systems, Computer architecture, Deep Learning, Reinforcement Learning.</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>Scored an aggregate of 9.18 CGPA till now.</p>
+                    <p>Scored an aggregate of 9.11 CGPA.</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Treasurer (Jan – June, 2024),
-                      Sergeant at Arms (July – Dec, 2023),
-                      Toastmaster Amrita Bengaluru
-                    </p>
+                    <p>Treasurer (Jan – June, 2024), Sergeant at Arms (July – Dec, 2023), Toastmaster Amrita Bengaluru</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Vice President, Amrita Management & Leadership
-                      (A.M.A.L) Club (2023 - 2024)
-                    </p>
+                    <p>Vice President, Amrita Management & Leadership (A.M.A.L) Club (2023 - 2024)</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Core Member –
-                      Geeks for Geeks Student Chapter,
-                      Amrita Bengaluru
-                    </p>
+                    <p>Core Member – Geeks for Geeks Student Chapter, Amrita Bengaluru</p>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-
         <!-- Grade XII -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
@@ -775,10 +985,7 @@
                 <ul class="services__modal-services grid">
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Subjects studied: Physics, Chemistry, Maths,
-                      English, IT & Environmental Science.
-                    </p>
+                    <p>Subjects studied: Physics, Chemistry, Maths, English, IT & Environmental Science.</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
@@ -789,7 +996,6 @@
             </div>
           </div>
         </div>
-
         <!-- Grade X -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
@@ -812,10 +1018,7 @@
                 <ul class="services__modal-services grid">
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>
-                      Subjects studied: Science, Maths, English,
-                      Social Sciences, IT & Sanskrit.
-                    </p>
+                    <p>Subjects studied: Science, Maths, English, Social Sciences, IT & Sanskrit.</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
@@ -837,6 +1040,44 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=================== Certifications ===================-->
+    <section class="certifications section" id="certifications">
+      <h2 class="section__title">Certifications</h2>
+      <span class="section__subtitle">My professional credentials</span>
+      <div class="certifications__container container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2rem;">
+        <!-- IBM AI Engineering Professional Certificate -->
+        <div class="certification__card" style="background: var(--container-color); border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 320px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s;">
+          <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" style="display: block; width: 100%;">
+            <img src="assets/img/IBM AI Engineering Professional Certificate.jpg" alt="IBM AI Engineering Professional Certificate" style="width: 100%; max-width: 260px; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);" />
+          </a>
+          <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" style="text-align: center; color: var(--title-color); font-size: 1.08rem; font-weight: 600; margin-bottom: 0.5rem; text-decoration: none;">
+            IBM AI Engineering Professional Certificate
+          </a>
+          <div style="color: var(--text-color-light); font-size: 0.98rem; margin-bottom: 0.5rem;">Coursera</div>
+        </div>
+        <!-- Introduction to Generative AI: Google Cloud -->
+        <div class="certification__card" style="background: var(--container-color); border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 320px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s;">
+          <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" style="display: block; width: 100%;">
+            <img src="assets/img/Introduction to Generative AI.jpg" alt="Introduction to Generative AI: Google Cloud" style="width: 100%; max-width: 260px; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);" />
+          </a>
+          <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" style="text-align: center; color: var(--title-color); font-size: 1.08rem; font-weight: 600; margin-bottom: 0.5rem; text-decoration: none;">
+            Introduction to Generative AI: Google Cloud
+          </a>
+          <div style="color: var(--text-color-light); font-size: 0.98rem; margin-bottom: 0.5rem;">Coursera</div>
+        </div>
+        <!-- Introduction to Data Analytics in Google Cloud -->
+        <div class="certification__card" style="background: var(--container-color); border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 1.5rem; width: 320px; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.3s;">
+          <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" style="display: block; width: 100%;">
+            <img src="assets/img/Introduction to Data Analytics in Google Cloud.jpg" alt="Introduction to Data Analytics in Google Cloud" style="width: 100%; max-width: 260px; border-radius: 0.5rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);" />
+          </a>
+          <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" style="text-align: center; color: var(--title-color); font-size: 1.08rem; font-weight: 600; margin-bottom: 0.5rem; text-decoration: none;">
+            Introduction to Data Analytics in Google Cloud
+          </a>
+          <div style="color: var(--text-color-light); font-size: 0.98rem; margin-bottom: 0.5rem;">Coursera</div>
         </div>
       </div>
     </section>
@@ -960,7 +1201,31 @@
       </div>
     </section>
 
-    <!--===================== Contact Me =====================-->
+    <!--=================== Blog ===================-->
+    <section class="blog section" id="blog">
+      <h2 class="section__title">Blog</h2>
+      <span class="section__subtitle">My latest writings</span>
+
+      <div class="blog__container container" style="display: flex; flex-direction: column; align-items: flex-start;">
+        <div class="blog__content" style="width: 100%;">
+          <p class="blog__description">
+            I write about technology, artificial intelligence, and my experiences in the field. Follow my journey through my blogs where I share insights, tutorials, and thoughts on the latest developments in AI, technology and my experiences.
+          </p>
+          <div style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center; width: 100%;">
+            <a href="https://nexussss.substack.com/" target="_blank" rel="noopener" class="button button--flex button--small blog__button" style="display: flex; align-items: center; gap: 0.5rem;">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/substack.svg" alt="Substack Logo" style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
+              Substack
+            </a>
+            <a href="https://medium.com/@pranav.03.h" target="_blank" rel="noopener" class="button button--flex button--small blog__button" style="display: flex; align-items: center; gap: 0.5rem;">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium Logo" style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
+              Medium
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=================== Contact ===================-->
     <section class="contact section" id="contact">
       <h2 class="section__title">Contact Me</h2>
       <span class="section__subtitle">Get in touch</span>
@@ -968,16 +1233,16 @@
       <div class="contact__container container grid">
         <div>
           <div class="contact__information">
-            <i class="uil uil-calling contact__icon"></i>
+            <i class="uil uil-phone contact__icon"></i>
 
             <div>
-              <h3 class="contact__title">Contact Me</h3>
-              <span class="contact__subtitle"><a href="tel:6362243314"></a>+91 986741773</span>
+              <h3 class="contact__title">Call Me</h3>
+              <span class="contact__subtitle">+91 9867417773</span>
             </div>
           </div>
 
           <div class="contact__information">
-            <i class="uil uil-envelope-minus contact__icon"></i>
+            <i class="uil uil-envelope contact__icon"></i>
 
             <div>
               <h3 class="contact__title">Email</h3>
@@ -989,32 +1254,34 @@
             <i class="uil uil-map-marker contact__icon"></i>
 
             <div>
-              <h3 class="contact__title"></h3>
-              <span class="contact__subtitle"><i class="fas fa-map-marker-alt"></i> Banglore, Karnataka,
-                India</span><br>
-              <span class="contact__subtitle"><i class="fas fa-map-marker-alt"></i> Mumbai, Maharashtra, India</span>
-              </span>
+              <h3 class="contact__title">Location</h3>
+              <span class="contact__subtitle">Bangalore, India</span>
             </div>
           </div>
         </div>
-        <form action="" class="contact__form grid">
+
+        <form id="contact-form" class="contact__form grid">
           <div class="contact__inputs grid">
             <div class="contact__content">
-              <label for="name" class="content__label">Name</label>
-              <input type="text" id="name" name="name" class="contact__input" placeholder="Enter your name" required />
+              <label for="name" class="contact__label">Name</label>
+              <input type="text" id="name" name="name" class="contact__input" required>
             </div>
 
             <div class="contact__content">
-              <label for="email" class="content__label">Email</label>
-              <input type="email" id="email" name="email" class="contact__input" placeholder="Enter your email" required />
+              <label for="email" class="contact__label">Email</label>
+              <input type="email" id="email" name="email" class="contact__input" required>
             </div>
           </div>
 
           <div class="contact__content">
-            <label for="message" class="content__label">Message</label>
-            <textarea id="message" name="message" cols="0" rows="7" class="contact__input" placeholder="Enter your message" required></textarea>
+            <label for="subject" class="contact__label">Subject</label>
+            <input type="text" id="subject" name="subject" class="contact__input" required>
           </div>
 
+          <div class="contact__content">
+            <label for="message" class="contact__label">Message</label>
+            <textarea id="message" name="message" class="contact__input" required></textarea>
+          </div>
 
           <div>
             <button type="submit" class="button button--flex">
@@ -1024,38 +1291,23 @@
           </div>
         </form>
       </div>
-
     </section>
   </main>
 
   <!--================== Footer ===============-->
   <footer class="footer">
     <div class="footer__bg">
-      <div class="footer__container container grid">
-        <div>
-          <h1 class="footer__title">Pranav</h1>
-          <span class="footer__subtitle">Artificial Intelligence Engineering Student</span>
-        </div>
-
-        <ul class="footer__links">
-          <li>
-            <a href="#experience" class="footer__link">Experience</a>
-          </li>
-          <li>
-            <a href="#qualifications" class="footer__link">Qualifications</a>
-          </li>
-          <li>
-            <a href="#portfolio" class="footer__link">Portfolio</a>
-          </li>
-          <li>
-            <a href="#contact" class="footer__link">Contact-Me</a>
-          </li>
+      <div class="footer__container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem 0;">
+        <h1 class="footer__title" style="margin-bottom: 0.25rem;">Pranav</h1>
+        <span class="footer__subtitle" style="margin-bottom: 1rem;">AI and Product Enthusiast</span>
+        <ul class="footer__links" style="display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0;">
+          <li><a href="#experience" class="footer__link">Experience</a></li>
+          <li><a href="#qualifications" class="footer__link">Qualifications</a></li>
+          <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
+          <li><a href="#contact" class="footer__link">Contact&#8209;Me</a></li>
         </ul>
-
-      
+        <p class="footer__copy" style="margin-top: 1rem; color: var(--text-color-light); font-size: 1rem;">&copy; Copyright : PRANAV H</p>
       </div>
-
-      <p class="footer__copy">&#169; Copyright : PRANAV H</p>
     </div>
   </footer>
 
@@ -1067,6 +1319,42 @@
   <script type="text/javascript" src="assets/swiper-bundle.min.js"></script>
   <script src="https://kit.fontawesome.com/2205d59d52.js" crossorigin="anonymous"></script>
   <script src="assets/ptj.js"></script>
+  
+  <!-- EmailJS Configuration -->
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("_eBL3jCsJTgrX03g6"); // Add your EmailJS user ID here
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+
+      // Prepare template parameters
+      const templateParams = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message
+      };
+
+      // Send email using EmailJS
+      emailjs.send('service_d0nt1mc', 'template_3vu55q8', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          alert('Message sent successfully!');
+          document.getElementById('contact-form').reset();
+        }, function(error) {
+          console.log('FAILED...', error);
+          alert('Failed to send message. Please try again.');
+        });
+    });
+  </script>
 </body>
 
 </html>

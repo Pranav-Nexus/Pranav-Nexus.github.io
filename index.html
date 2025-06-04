@@ -228,7 +228,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background-color: var(--first-color);
+      background-color: var(--pattern-orange);
       color: #fff;
       padding: 0.75rem 1.5rem;
       border-radius: 0.5rem;
@@ -237,7 +237,7 @@
     }
 
     .blog__button:hover {
-      background-color: var(--first-color-alt);
+      background-color: var(--pattern-teal);
       transform: translateY(-0.25rem);
     }
 
@@ -382,6 +382,47 @@
       align-items: center;
       justify-content: flex-start;
     }
+
+    .about__buttons a {
+      background-color: var(--pattern-orange);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-medium);
+      transition: .3s;
+    }
+
+    .about__buttons a:hover {
+      background-color: var(--pattern-teal);
+    }
+
+    .button,
+    .button--flex {
+      background-color: var(--pattern-orange);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-medium);
+      transition: .3s;
+    }
+
+    .button:hover,
+    .button--flex:hover {
+      background-color: var(--pattern-teal);
+    }
+
+    .portfolio__button {
+      background-color: var(--pattern-orange);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: var(--font-medium);
+      transition: .3s;
+    }
+
+    .portfolio__button:hover {
+      background-color: var(--pattern-teal);
+    }
   </style>
 </head>
 
@@ -496,8 +537,8 @@
               A fourth-year undergraduate engineering student at
               <a href="https://www.amrita.edu/campus/bengaluru" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;"><strong>Amrita Vishwa Vidhyapeetham</strong>, Banglore</a>.
             </p>
-            <a href="#contact" class="button button--flex">
-              Contact me<i class="uil uil-message button__icon"></i>
+            <a href="#contact" class="button button--flex" style="background-color: #46b8da; color: white;">
+              <i class="uil uil-message button__icon" style="margin-right: 0.5rem; color: white;"></i>Contact me
             </a>
           </div>
         </div>
@@ -1310,9 +1351,8 @@
           </div>
 
           <div>
-            <button type="submit" class="button button--flex">
-              Send Message
-              <i class="uil uil-message button__icon"></i>
+            <button type="submit" class="button button--flex" style="background-color: #46b8da; color: white;">
+              <i class="uil uil-message button__icon" style="margin-right: 0.5rem; color: white;"></i>Send Message
             </button>
           </div>
         </form>

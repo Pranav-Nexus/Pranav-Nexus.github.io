@@ -364,6 +364,24 @@
     .about__info a:hover {
       color: var(--first-color);
     }
+
+    .portfolio__img {
+      width: 340px;         /* or your preferred width */
+      height: 240px;        /* or your preferred height */
+      object-fit: contain;  /* or 'cover' if you want to crop */
+      background: #222c2c;  /* fallback background for transparency */
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .portfolio__content {
+      min-height: 520px;    /* Ensures all cards have the same height */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
   </style>
 </head>
 
@@ -409,7 +427,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="https://sites.google.com/view/pranavphotography/home" class="nav__link">
+            <a href="https://sites.google.com/view/pranavphotography/home" class="nav__link" target="_blank" rel="noopener">
               <i class="uil uil-message nav__icon"></i>Photography Page
             </a>
           </li>
@@ -1085,7 +1103,7 @@
     <!--=================== Portfolio ===================-->
     <section class="portfolio section" id="portfolio">
       <h2 class="section__title">Projects</h2>
-
+      <br><br>
       <div class="portfolio__container container swiper-container">
         <div class="swiper-wrapper">
           <!-- Project 1 -->
@@ -1101,8 +1119,12 @@
                 • Handles dynamic typing and interpretation<br><br>
                 <strong>Publication:</strong> 15th International Conference on Computing, Communication and Networking Technologies (IIT Mandi)
               </p>
-              <a href="https://github.com/Pranav-Nexus/On-Device-Translation-of-Dynamically-Typed-Interpreted-Languages" class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/On-Device-Translation-of-Dynamically-Typed-Interpreted-Languages" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
+                <i class="uil uil-external-link-alt button__icon"></i>
+              </a>
+              <a href="https://ieeexplore.ieee.org/document/10724883" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener" style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
+                Publication
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
             </div>
@@ -1121,8 +1143,12 @@
                 • MongoDB integration for efficient data processing<br><br>
                 <strong>Publication:</strong> 3rd International Conference on Advances in Computing, Communication and Applied Informatics, 2024
               </p>
-              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB" class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
+                <i class="uil uil-external-link-alt button__icon"></i>
+              </a>
+              <a href="https://ieeexplore.ieee.org/document/10602244" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener" style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
+                Publication
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
             </div>
@@ -1141,7 +1167,7 @@
                 • Custom attribute preservation<br>
                 • High-quality output generation
               </p>
-              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation" class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1161,7 +1187,7 @@
                 • Market inefficiency detection<br>
                 • Real-time trend analysis
               </p>
-              <a href="https://github.com/Pranav-Nexus/TRASIS" class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/TRASIS" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1181,7 +1207,7 @@
                 • Pattern recognition and analysis<br>
                 • Advanced classification techniques
               </p>
-              <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning" class="button button--flex button--small portfolio__button">
+              <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>

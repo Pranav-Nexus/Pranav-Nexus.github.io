@@ -70,21 +70,33 @@
       border-top-color: var(--first-color);
     }
 
-    /* GitHub and Google Scholar tooltips to the left */
-    .home__social-icon.github::before,
+    /* Google Scholar tooltip above */
     .home__social-icon.scholar::before {
-      top: 50%;
-      right: calc(100% + 10px);
-      transform: translateY(-50%);
-      text-align: left;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    .home__social-icon.github::after,
+    /* Google Scholar tooltip arrow above */
     .home__social-icon.scholar::after {
-      top: 50%;
-      right: calc(100% + 4px);
-      transform: translateY(-50%);
-      border-right-color: var(--first-color);
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: var(--first-color);
+    }
+
+    /* GitHub tooltip to the left (keeping this one as it's shorter) */
+    .home__social-icon.github::before {
+        top: 50%;
+        right: calc(100% + 10px);
+        transform: translateY(-50%);
+        text-align: left;
+    }
+    .home__social-icon.github::after {
+        top: 50%;
+        right: calc(100% + 4px);
+        transform: translateY(-50%);
+        border-right-color: var(--first-color);
     }
 
     /* Instagram tooltip below */

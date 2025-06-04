@@ -527,6 +527,88 @@
       flex-direction: column;
       align-items: center;
     }
+
+    /* Add CSS for pulsing circle around home image */
+    .home__img {
+      position: relative; /* Needed for absolute positioning of pseudo-elements */
+      z-index: 1; /* Ensure image is above pseudo-elements */
+    }
+
+    .home__img::before,
+    .home__img::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 2px solid var(--first-color); /* Use a theme color for the circle */
+      border-radius: 50%;
+      z-index: -1; /* Place behind the image */
+    }
+
+    .home__img::before {
+      width: calc(100% + 20px); /* Slightly larger than image */
+      height: calc(100% + 20px); /* Slightly larger than image */
+      animation: pulse-outer 2s infinite ease-out; /* Outer pulse animation */
+    }
+
+    .home__img::after {
+      width: calc(100% + 50px); /* Even larger */
+      height: calc(100% + 50px); /* Even larger */
+      animation: pulse-inner 2s infinite ease-out; /* Inner pulse animation */
+    }
+
+    /* Keyframes for the pulsing animation */
+    @keyframes pulse-outer {
+      0% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0.7;
+      }
+      70% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(0.95);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse-inner {
+      0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0.5;
+      }
+      70% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    /* CSS for pulsing filter effect on blob */
+    .home__blob-pulse {
+        animation: filter-pulse 2s infinite ease-in-out;
+    }
+
+    /* Keyframes for pulsing filter animation */
+    @keyframes filter-pulse {
+        0% {
+            filter: url(#pulse-glow);
+            opacity: 0.7;
+        }
+        50% {
+            filter: url(#pulse-glow);
+            opacity: 0.3;
+        }
+        100% {
+            filter: url(#pulse-glow);
+            opacity: 0.7;
+        }
+    }
   </style>
 </head>
 
@@ -617,17 +699,30 @@
           <div class="home__img">
             <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur">
+                        <animate attributeName="stdDeviation" begin="0s" dur="2s" values="5;10;5" keyTimes="0;0.5;1" repeatCount="indefinite" />
+                    </feGaussianBlur>
+                    <feFlood flood-color="var(--first-color)" result="flood"></feFlood>
+                    <feComposite in="flood" in2="blur" operator="in" result="glow"></feComposite>
+                    <feMerge>
+                        <feMergeNode in="glow"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+              </defs>
               <mask id="mask0" mask-type="alpha">
-                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                      130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                      97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                      0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547
+                        130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775
+                        97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666
+                        0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
               </mask>
               <g mask="url(#mask0)">
-                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                   -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346
+                      165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403
+                      129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028
+                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" filter="url(#pulse-glow)" />
                 <image class="home__blob-img" x="-79" y="-46" xlink:href="assets/img/Pro.jpg" />
               </g>
             </svg>
@@ -1526,37 +1621,69 @@
 
     // Typing effect for Home title
     document.addEventListener('DOMContentLoaded', function() {
-      const titleElement = document.querySelector('.home__title');
-      const fullText = "Hi, I'm Pranav H";
-      let i = 0;
-      const typingSpeed = 70; // milliseconds per character
+       const titleElement = document.querySelector('.home__title');
+       const phrases = [
+        "Hi, I'm Pranav H",
+        "Exploring Project Management",
+        "Building Generative AI",
+        "Passionate about AI & Product",
+        "I love to code.py"
+       ];
+       let phraseIndex = 0;
+       let charIndex = 0;
+       const typingSpeed = 70; // milliseconds per character
+       const erasingSpeed = 50; // milliseconds per character
+       const pauseTime = 1500; // milliseconds to pause between phrases
 
-      if (titleElement) {
-        titleElement.textContent = ''; // Start with an empty string
-        const cursorSpan = document.createElement('span');
-        cursorSpan.classList.add('typing-cursor');
-        titleElement.appendChild(cursorSpan);
-        
-        function type() {
-          if (i < fullText.length) {
-            titleElement.textContent = fullText.substring(0, i + 1);
-            i++;
+       // Initial setup: clear the existing title content
+       titleElement.textContent = '';
+       const cursorSpan = document.createElement('span');
+       cursorSpan.classList.add('typing-cursor');
+       titleElement.appendChild(cursorSpan);
+       
+       // Start the typing animation sequence
+       setTimeout(type, 500); // Initial delay before typing starts
+
+       function type() {
+         if (charIndex < phrases[phraseIndex].length) {
+           // Typing
+           titleElement.textContent = phrases[phraseIndex].substring(0, charIndex + 1);
+           charIndex++;
+           // Re-append cursor after updating textContent
+           if (!titleElement.querySelector('.typing-cursor')) {
+              titleElement.appendChild(cursorSpan);
+           }
+           setTimeout(type, typingSpeed);
+         } else {
+           // Typing complete, now pause and start erasing
+           // Remove cursor temporarily for pause
+           if (titleElement.querySelector('.typing-cursor')) {
+              titleElement.querySelector('.typing-cursor').remove();
+           }
+           setTimeout(erase, pauseTime);
+         }
+       }
+
+       function erase() {
+         if (charIndex > 0) {
+           // Erasing
+           titleElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+           charIndex--;
             // Re-append cursor after updating textContent
-            if (!titleElement.querySelector('.typing-cursor')) {
-               titleElement.appendChild(cursorSpan);
-            }
-            setTimeout(type, typingSpeed);
-          } else {
-            // Remove cursor after typing is complete
-            if (titleElement.querySelector('.typing-cursor')) {
-               titleElement.querySelector('.typing-cursor').remove();
-            }
-          }
-        }
-
-        // Start typing after a short delay
-        setTimeout(type, 500);
-      }
+           if (!titleElement.querySelector('.typing-cursor')) {
+              titleElement.appendChild(cursorSpan);
+           }
+           setTimeout(erase, erasingSpeed);
+         } else {
+           // Erasing complete, move to next phrase and start typing
+           phraseIndex = (phraseIndex + 1) % phrases.length; // Cycle through phrases
+           // Ensure cursor is present before typing starts
+           if (!titleElement.querySelector('.typing-cursor')) {
+              titleElement.appendChild(cursorSpan);
+           }
+           setTimeout(type, typingSpeed);
+         }
+       }
     });
   </script>
 </body>

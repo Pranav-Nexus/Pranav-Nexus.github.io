@@ -341,18 +341,14 @@ img {
 }
 
 /*================== Buttons ===================*/
-.button {
-  display: inline-block;
-  background-color: var(--first-color);
+.button, .button--flex, .portfolio__button {
+  background: var(--pattern-orange);
   color: #fff;
-  padding: 1rem;
-  margin-bottom: 10px;
   border-radius: 0.5rem;
-  font-weight: var(--font-medium);
+  transition: background 0.3s;
 }
-
-.button:hover {
-  background-color: var(--first-color-alt);
+.button:hover, .button--flex:hover, .portfolio__button:hover {
+  background: var(--pattern-teal);
 }
 
 .button__icon {

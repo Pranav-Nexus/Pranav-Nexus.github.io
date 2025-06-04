@@ -435,6 +435,34 @@
       color: #000; /* Dark icon */
       margin-right: 0.5rem;
     }
+
+    /* Typing cursor animation */
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      background-color: var(--title-color);
+      animation: blink .7s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    /* Ensure home title space is reserved during typing */
+    .home__title {
+        min-height: 1.2em; /* Approximate height for one line */
+        white-space: nowrap; /* Prevent wrapping during typing */
+        overflow: hidden; /* Hide overflowing text during typing */
+    }
+    /* Adjust for responsiveness if needed */
+    @media screen and (max-width: 768px) { /* Example breakpoint */
+        .home__title {
+            white-space: normal; /* Allow wrapping on smaller screens */
+            min-height: 2.4em; /* Approximate height for two lines */
+        }
+    }
   </style>
 </head>
 
@@ -1430,6 +1458,41 @@
           console.log('FAILED...', error);
           alert('Failed to send message. Please try again.');
         });
+    });
+
+    // Typing effect for Home title
+    document.addEventListener('DOMContentLoaded', function() {
+      const titleElement = document.querySelector('.home__title');
+      const fullText = "Hi, I'm Pranav H";
+      let i = 0;
+      const typingSpeed = 70; // milliseconds per character
+
+      if (titleElement) {
+        titleElement.textContent = ''; // Start with an empty string
+        const cursorSpan = document.createElement('span');
+        cursorSpan.classList.add('typing-cursor');
+        titleElement.appendChild(cursorSpan);
+        
+        function type() {
+          if (i < fullText.length) {
+            titleElement.textContent = fullText.substring(0, i + 1);
+            i++;
+            // Re-append cursor after updating textContent
+            if (!titleElement.querySelector('.typing-cursor')) {
+               titleElement.appendChild(cursorSpan);
+            }
+            setTimeout(type, typingSpeed);
+          } else {
+            // Remove cursor after typing is complete
+            if (titleElement.querySelector('.typing-cursor')) {
+               titleElement.querySelector('.typing-cursor').remove();
+            }
+          }
+        }
+
+        // Start typing after a short delay
+        setTimeout(type, 500);
+      }
     });
   </script>
 </body>

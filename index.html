@@ -475,6 +475,58 @@
             min-height: 2.4em; /* Approximate height for two lines */
         }
     }
+
+    /* Common bounce animation for content boxes */
+    .content-box {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .content-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      animation: bounce 1s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-15px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Apply to specific elements */
+    .blog__content,
+    .portfolio__content,
+    .experience__content,
+    .certification__card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .blog__content:hover,
+    .portfolio__content:hover,
+    .experience__content:hover,
+    .certification__card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      animation: bounce 1s ease-in-out;
+    }
+
+    /* Remove the old certification card specific styles */
+    .certification__card {
+      background: var(--container-color);
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 1.5rem;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   </style>
 </head>
 

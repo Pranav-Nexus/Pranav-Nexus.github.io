@@ -1692,6 +1692,20 @@
          }
        }
     });
+
+    // Close modals when clicking outside
+    document.addEventListener('click', function(event) {
+        const modals = document.querySelectorAll('.services__modal');
+        const modalContent = document.querySelector('.services__modal-content'); // Assuming only one modal is open at a time or we want to target the first found open one
+        const isClickInsideModalContent = modalContent && modalContent.contains(event.target);
+        const isClickOnModalButton = event.target.closest('.services__button');
+
+        if (!isClickInsideModalContent && !isClickOnModalButton) {
+            modals.forEach(modal => {
+                modal.classList.remove('active-modal');
+            });
+        }
+    });
   </script>
 </body>
 

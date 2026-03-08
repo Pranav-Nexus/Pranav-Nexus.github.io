@@ -25,7 +25,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin />
 
   <!-- LCP Image Preload -->
   <link rel="preload" as="image" href="assets/img/profile.webp" />
@@ -39,7 +38,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" />
   </noscript>
 
-  <link rel="stylesheet" href="assets/newcss.min.css" /> <!-- Swapped to Minified CSS payload -->
+  <style id="critical-css">
+    :root{--header-height:3rem;--hue-color:190;--first-color:hsl(var(--hue-color), 69%, 61%);--first-color-second:hsl(var(--hue-color), 69%, 61%);--first-color-alt:hsl(var(--hue-color), 57%, 53%);--first-color-lighter:hsl(var(--hue-color), 92%, 85%);--title-color:hsl(var(--hue-color), 8%, 15%);--text-color:hsl(var(--hue-color), 8%, 35%);--text-color-light:hsl(var(--hue-color), 8%, 65%);--input-color:hsl(var(--hue-color), 70%, 96%);--body-color:hsl(var(--hue-color), 60%, 99%);--container-color:#fff;--body-font:"Poppins",sans-serif;--big-font-size:2rem;--h1-font-size:1.5rem;--h2-font-size:1.25rem;--h3-font-size:1.125rem;--normal-font-size:0.938rem;--small-font-size:0.813rem;--smaller-font-size:0.75rem;--font-medium:500;--font-semi-bold:600;--mb-0-25:0.25rem;--mb-0-5:0.5rem;--mb-0-75:0.75rem;--mb-1:1rem;--mb-1-5:1.5rem;--mb-2:2rem;--mb-2-5:2.5rem;--mb-3:3rem;--z-tooltip:10;--z-fixed:100;--z-modal:1000}@media screen and (min-width:968px){:root{--big-font-size:3rem;--h1-font-size:2.25rem;--h2-font-size:1.5rem;--h3-font-size:1.25rem;--normal-font-size:1rem;--small-font-size:0.875rem;--smaller-font-size:0.813rem}}*{box-sizing:border-box;padding:0;margin:0}html{scroll-behavior:smooth}body{margin:0 0 var(--header-height) 0;font-family:var(--body-font);font-size:var(--normal-font-size);background-color:var(--body-color);color:var(--text-color)}h1,h2,h3{color:var(--title-color);font-weight:var(--font-semi-bold)}ul{list-style:none}a{text-decoration:none}img{max-width:100%;height:auto}.section{padding:2rem 0 4rem}.section__title{font-size:var(--h1-font-size);text-align:center}.section__subtitle{display:block;font-size:var(--small-font-size);margin-bottom:var(--mb-3);text-align:center}.container{max-width:768px;margin-left:var(--mb-1-5);margin-right:var(--mb-1-5)}.grid{display:grid;gap:1.5rem}.header{width:100%;position:fixed;bottom:0;left:0;z-index:var(--z-fixed);background-color:var(--body-color)}.nav{max-width:968px;height:var(--header-height);display:flex;justify-content:space-between;align-items:center}.home__content{grid-template-columns:0.5fr 3fr;padding-top:3.5rem;align-items:center}.home__social{display:grid;grid-template-columns:max-content;row-gap:1rem}.home__social-icon{font-size:1.05rem;color:var(--first-color)}.home__blob{width:200px;fill:var(--first-color)}.home__data{grid-column:1/3}.home__title{font-size:var(--big-font-size);min-height:1.2em;white-space:nowrap;overflow:hidden}.home__subtitle{font-size:var(--h3-font-size);color:var(--text-color);font-weight:var(--font-medium);margin-bottom:var(--mb-0-75)}.button{background-color:var(--pattern-orange);color:var(--title-color);padding:.75rem 1.5rem;border-radius:.5rem;font-weight:var(--font-medium);display:inline-flex;align-items:center}@media screen and (max-width:768px){.home__title{white-space:normal;min-height:2.4em}.container{margin-left:var(--mb-1);margin-right:var(--mb-1)}}@media screen and (min-width:768px){.container{margin-left:auto;margin-right:auto}body{margin:0}.header{top:0;bottom:initial}.nav{height:calc(var(--header-height) + 1.5rem)}.home__content{padding-top:5.5rem;column-gap:2rem}.home__blob{width:240px}}
+  </style>
+  <link rel="preload" href="assets/newcss.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="assets/newcss.min.css" /></noscript>
 
   <!-- Non-critical Stylesheets Asynchronously Loaded -->
   <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
@@ -239,7 +242,7 @@
                 <i class="uil uil-message button__icon"></i>Contact me
               </a>
               <a download="" href="assets/Pranav H  Profile.pdf" class="button button--flex">
-                Download Resume<i class="fas fa-download button__icon"></i>
+                Download Resume<i class="uil uil-download-alt button__icon"></i>
               </a>
             </div>
           </div>
@@ -303,7 +306,7 @@
 
           <div class="about__buttons">
             <a download="" href="assets\Pranav H  Profile.pdf" class="button button--flex">
-              Download Resume<i class="fas fa-download button__icon"></i>
+              Download Resume<i class="uil uil-download-alt button__icon"></i>
             </a>
           </div>
         </div>
@@ -321,7 +324,7 @@
           <!--==================== Skill 1 =================-->
           <div class="skills__content skills__close">
             <div class="skills__header">
-              <i class="fas fa-pencil-ruler skills__icon"></i>
+              <i class="uil uil-edit skills__icon"></i>
               <div>
                 <h3 class="skills__title">Programming Languages</h3>
               </div>
@@ -363,7 +366,7 @@
           <!--==================== Skill 2 =================-->
           <div class="skills__content skills__close">
             <div class="skills__header">
-              <i class="fas fa-code skills__icon"></i>
+              <i class="uil uil-brackets-curly skills__icon"></i>
               <div>
                 <h3 class="skills__title">IT Constructs</h3>
               </div>
@@ -437,7 +440,7 @@
           <!--==================== Skill 3 =================-->
           <div class="skills__content skills__close">
             <div class="skills__header">
-              <i class="fas fa-swatchbook skills__icon"></i>
+              <i class="uil uil-swatch-book skills__icon"></i>
               <div>
                 <h3 class="skills__title">Technologies</h3>
               </div>
@@ -1496,7 +1499,6 @@
   </a>
 
   <script src="assets/swiper-bundle.min.js" defer></script>
-  <script src="https://kit.fontawesome.com/2205d59d52.js" defer crossorigin="anonymous"></script>
   <script src="assets/ptj.min.js" defer></script>
 
   <!-- EmailJS Configuration -->

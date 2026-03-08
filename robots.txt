@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pranav-nexus.github.io/Profile-Pranav.github.io/sitemap.xml

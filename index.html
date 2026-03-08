@@ -6,6 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Pranav H, an AI Enthusiast and Software Quality Advocate with a background in data analysis and Generative AI." />
+  <meta name="keywords" content="Pranav H, Data Analysis, Portfolio, AI Enthusiast, Software Quality" />
+  <meta name="author" content="Pranav H" />
+  <meta property="og:title" content="Pranav H - Portfolio" />
+  <meta property="og:description" content="AI Enthusiast and Software Quality Advocate." />
+  <meta property="og:image" content="https://pranav-nexus.github.io/Profile-Pranav.github.io/assets/img/Pro.jpg" />
+  <meta property="og:type" content="website" />
   <link rel="icon" type="image/png" href="assets/img/Website Logo.png" sizes="32x32" />
   <link rel="apple-touch-icon" href="assets/img/Website Logo.png" />
   <link rel="mask-icon" href="assets/img/Website Logo.png" color="#4db5ff" />
@@ -16,602 +24,55 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <style>
-    /* Favicon masking for circular shape */
-    link[rel="icon"] {
-      border-radius: 50%;
-      -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-      mask-image: radial-gradient(circle, white 100%, black 100%, black 100%);
-    }
 
-    /* General tooltip styles */
-    .home__social-icon::before {
-      content: attr(data-tooltip);
-      position: absolute;
-      padding: 8px 12px; /* Adjust padding for better spacing */
-      background-color: var(--first-color);
-      color: #fff;
-      font-size: 0.875rem;
-      border-radius: 6px;
-      white-space: nowrap;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
-
-    .home__social-icon::after {
-      content: '';
-      position: absolute;
-      border: 6px solid transparent;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .home__social-icon:hover::before,
-    .home__social-icon:hover::after {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    /* LinkedIn tooltip above */
-    .home__social-icon.linkedin::before {
-      bottom: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .home__social-icon.linkedin::after {
-      bottom: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-color: var(--first-color);
-    }
-
-    /* Google Scholar tooltip above */
-    .home__social-icon.scholar::before {
-      bottom: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    /* Google Scholar tooltip arrow above */
-    .home__social-icon.scholar::after {
-      bottom: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-color: var(--first-color);
-    }
-
-    /* GitHub tooltip to the left (keeping this one as it's shorter) */
-    .home__social-icon.github::before {
-        top: 50%;
-        right: calc(100% + 10px);
-        transform: translateY(-50%);
-        text-align: left;
-    }
-    .home__social-icon.github::after {
-        top: 50%;
-        right: calc(100% + 4px);
-        transform: translateY(-50%);
-        border-right-color: var(--first-color);
-    }
-
-    /* Instagram tooltip below */
-    .home__social-icon.instagram::before {
-      top: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-
-    .home__social-icon.instagram::after {
-      top: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-color: var(--first-color);
-    }
-
-    .education-timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .education-timeline::before {
-      content: '';
-      position: absolute;
-      left: 32px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #4db5ff;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 2.5rem;
-      padding-left: 60px;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: 26px;
-      top: 10px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #4db5ff;
-    }
-
-    .timeline-content {
-      background: rgba(77, 181, 255, 0.1);
-      padding: 1.5rem;
-      border-radius: 8px;
-    }
-
-    .timeline-title {
-      color: var(--title-color);
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-school {
-      color: var(--text-color);
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .timeline-board {
-      color: var(--text-color-light);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-date {
-      color: #4db5ff;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .timeline-link {
-      color: #4db5ff;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      transition: gap 0.3s;
-    }
-
-    .timeline-link:hover {
-      gap: 0.75rem;
-    }
-
-    /* Add text justification styles */
-    .about__description,
-    .experience__description,
-    .portfolio__description,
-    .services__modal-service p,
-    .timeline-content p {
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    /* Blog section styles */
-    .blog__container {
-      padding: 2rem 0;
-    }
-
-    .blog__content {
-      background: var(--container-color);
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: .3s;
-    }
-
-    .blog__content:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      transform: translateY(-0.25rem);
-    }
-
-    .blog__title {
-      font-size: var(--h3-font-size);
-      margin-bottom: 1rem;
-      color: var(--title-color);
-    }
-
-    .blog__description {
-      font-size: var(--normal-font-size);
-      color: var(--text-color);
-      margin-bottom: 1.5rem;
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    .blog__button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background-color: var(--pattern-orange);
-      color: var(--title-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: var(--font-medium);
-      transition: .3s;
-    }
-
-    .blog__button:hover {
-      background-color: var(--pattern-teal);
-      transform: translateY(-0.25rem);
-    }
-
-    /* Contact section styles */
-    .contact__container {
-      row-gap: 3rem;
-    }
-
-    .contact__information {
-      display: flex;
-      margin-bottom: var(--mb-2);
-    }
-
-    .contact__icon {
-      font-size: 2rem;
-      color: var(--first-color);
-      margin-right: var(--mb-0-75);
-    }
-
-    .contact__title {
-      font-size: var(--h3-font-size);
-      font-weight: var(--font-medium);
-    }
-
-    .contact__subtitle {
-      font-size: var(--small-font-size);
-      color: var(--text-color-light);
-    }
-
-    .contact__form {
-      position: relative;
-    }
-
-    .contact__form-div {
-      position: relative;
-      height: 4rem;
-      margin-bottom: var(--mb-2);
-    }
-
-    .contact__form-input {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--text-color-light);
-      background: none;
-      color: var(--text-color);
-      outline: none;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      z-index: 1;
-    }
-
-    .contact__form-tag {
-      position: absolute;
-      top: -0.75rem;
-      left: 1.25rem;
-      font-size: var(--smaller-font-size);
-      padding: 0.25rem;
-      background-color: var(--body-color);
-      z-index: 10;
-    }
-
-    .contact__form-area {
-      height: 11rem;
-    }
-
-    .contact__form-area textarea {
-      resize: none;
-    }
-
-    .contact__form-input:focus {
-      border-color: var(--first-color);
-    }
-
-    .contact__form-input:focus + .contact__form-tag {
-      color: var(--first-color);
-    }
-
-    .footer__bg {
-      background: var(--container-color);
-      border-top: 1px solid var(--text-color-light);
-      width: 100%;
-    }
-
-    .footer__container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .footer__title {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .footer__subtitle {
-      font-size: 1.1rem;
-      color: var(--text-color-light);
-    }
-
-    .footer__links a {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .footer__links a:hover {
-      color: var(--first-color);
-    }
-
-    .footer__copy {
-      font-size: 1rem;
-      color: var(--text-color-light);
-    }
-
-    .about__info a {
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .about__info a:hover {
-      color: var(--first-color);
-    }
-
-    .portfolio__img {
-      width: 340px;         /* or your preferred width */
-      height: 240px;        /* or your preferred height */
-      object-fit: contain;  /* or 'cover' if you want to crop */
-      background: #222c2c;  /* fallback background for transparency */
-      border-radius: 12px;
-      display: block;
-      margin: 0 auto 1.5rem auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    }
-    .portfolio__content {
-      min-height: 520px;    /* Ensures all cards have the same height */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .about__buttons a {
-      background-color: var(--pattern-orange);
-      color: var(--title-color);
-      padding: 1rem 2rem;
-      border-radius: 0.5rem;
-      font-weight: var(--font-medium);
-      transition: .3s;
-    }
-
-    .about__buttons a:hover {
-      background-color: var(--pattern-teal);
-    }
-
-    .button,
-    .button--flex {
-      background-color: var(--pattern-orange);
-      color: var(--title-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: var(--font-medium);
-      transition: .3s;
-    }
-
-    .button:hover,
-    .button--flex:hover {
-      background-color: var(--pattern-teal);
-    }
-
-    .portfolio__button {
-      background-color: var(--pattern-orange);
-      color: var(--title-color);
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: var(--font-medium);
-      transition: .3s;
-    }
-
-    .portfolio__button:hover {
-      background-color: var(--pattern-teal);
-    }
-
-    .button--custom-blue {
-      background-color: #46b8da;
-      color: #000; /* Dark text for visibility */
-    }
-    .button--custom-blue:hover {
-      background-color: #35a0c4; /* Slightly darker blue on hover */
-    }
-    .button--custom-blue .button__icon {
-      color: #000; /* Dark icon */
-      margin-right: 0.5rem;
-    }
-
-    /* Typing cursor animation */
-    .typing-cursor {
-      display: inline-block;
-      width: 2px;
-      background-color: var(--title-color);
-      animation: blink .7s infinite;
-    }
-
-    @keyframes blink {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    /* Ensure home title space is reserved during typing */
-    .home__title {
-        min-height: 1.2em; /* Approximate height for one line */
-        white-space: nowrap; /* Prevent wrapping during typing */
-        overflow: hidden; /* Hide overflowing text during typing */
-        min-width: 700px; /* Significantly increased minimum width to fix layout shifts */
-        margin-left: 0; /* Ensure no extra margin is causing misalignment */
-    }
-    /* Adjust for responsiveness if needed */
-    @media screen and (max-width: 768px) { /* Example breakpoint */
-        .home__title {
-            white-space: normal; /* Allow wrapping on smaller screens */
-            min-height: 2.4em; /* Approximate height for two lines */
-        }
-    }
-
-    /* Common bounce animation for content boxes */
-    .content-box {
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-    .content-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      animation: bounce 1s ease-in-out;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
+  <!-- AI-SEO / GEO Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pranav H",
+    "jobTitle": "Quality Assurance Engineer & AI Enthusiast",
+    "url": "https://pranav-nexus.github.io/Profile-Pranav.github.io/",
+    "sameAs": [
+      "https://www.linkedin.com/in/pranav-h-a08744250/",
+      "https://github.com/Pranav-Nexus",
+      "https://scholar.google.com/citations?user=q8cW1AQAAAAJ"
+    ],
+    "image": "https://pranav-nexus.github.io/Profile-Pranav.github.io/assets/img/Pro.jpg",
+    "description": "Passionate about leveraging AI to enhance software quality and reliability. Strong background in Generative AI, Machine Learning, and Data Analysis.",
+    "worksFor": [
+      {
+        "@type": "Organization",
+        "name": "Envestnet"
+      },
+      {
+        "@type": "Organization",
+        "name": "Future AGI"
+      },
+      {
+        "@type": "Organization",
+        "name": "AVIVO"
       }
-      40% {
-        transform: translateY(-15px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-
-    /* Apply to specific elements */
-    .blog__content,
-    .portfolio__content,
-    .experience__content,
-    .certification__card {
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-    .blog__content:hover,
-    .portfolio__content:hover,
-    .experience__content:hover,
-    .certification__card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      animation: bounce 1s ease-in-out;
-    }
-
-    /* Remove the old certification card specific styles */
-    .certification__card {
-      background: var(--container-color);
-      border-radius: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      padding: 1.5rem;
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Add CSS for pulsing circle around home image */
-    .home__img {
-      position: relative; /* Needed for absolute positioning of pseudo-elements */
-      z-index: 1; /* Ensure image is above pseudo-elements */
-    }
-
-    .home__img::before,
-    .home__img::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px solid var(--first-color); /* Use a theme color for the circle */
-      border-radius: 50%;
-      z-index: -1; /* Place behind the image */
-    }
-
-    .home__img::before {
-      width: calc(100% + 20px); /* Slightly larger than image */
-      height: calc(100% + 20px); /* Slightly larger than image */
-      animation: pulse-outer 2s infinite ease-out; /* Outer pulse animation */
-    }
-
-    .home__img::after {
-      width: calc(100% + 50px); /* Even larger */
-      height: calc(100% + 50px); /* Even larger */
-      animation: pulse-inner 2s infinite ease-out; /* Inner pulse animation */
-    }
-
-    /* Keyframes for the pulsing animation */
-    @keyframes pulse-outer {
-      0% {
-        transform: translate(-50%, -50%) scale(0.95);
-        opacity: 0.7;
-      }
-      70% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(0.95);
-        opacity: 0;
-      }
-    }
-
-    @keyframes pulse-inner {
-      0% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0.5;
-      }
-      70% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0;
-      }
-    }
-
-    /* CSS for pulsing filter effect on blob */
-    .home__blob-pulse {
-        animation: filter-pulse 2s infinite ease-in-out;
-    }
-
-    /* Keyframes for pulsing filter animation */
-    @keyframes filter-pulse {
-        0% {
-            filter: url(#pulse-glow);
-            opacity: 0.7;
-        }
-        50% {
-            filter: url(#pulse-glow);
-            opacity: 0.3;
-        }
-        100% {
-            filter: url(#pulse-glow);
-            opacity: 0.7;
-        }
-    }
-  </style>
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Amrita Vishwa Vidyapeetham"
+    },
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Quality Assurance",
+      "Generative AI",
+      "Model Context Protocols (MCP)",
+      "Software Testing",
+      "Python",
+      "C++",
+      "Cloud Computing",
+      "Data Analytics",
+      "Playwright"
+    ]
+  }
+  </script>
 </head>
 
 <body oncontextmenu="return false">
@@ -656,7 +117,8 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="https://sites.google.com/view/pranavphotography/home" class="nav__link" target="_blank" rel="noopener">
+            <a href="https://sites.google.com/view/pranavphotography/home" class="nav__link" target="_blank"
+              rel="noopener">
               <i class="uil uil-camera nav__icon"></i>Photography Page
             </a>
           </li>
@@ -682,19 +144,23 @@
       <div class="home__container container grid">
         <div class="home__content grid">
           <div class="home__social">
-            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" rel="noopener" class="home__social-icon linkedin" data-tooltip="Connect with me on LinkedIn">
+            <a href="https://www.linkedin.com/in/pranav-h-a08744250/" target="_blank" rel="noopener"
+              class="home__social-icon linkedin" data-tooltip="Connect with me on LinkedIn">
               <i class="uil uil-linkedin-alt home__icon"></i>
             </a>
 
-            <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" class="home__social-icon github" data-tooltip="Check out my projects on GitHub">
+            <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" class="home__social-icon github"
+              data-tooltip="Check out my projects on GitHub">
               <i class="uil uil-github-alt home__icon"></i>
             </a>
 
-            <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" class="home__social-icon scholar" target="_blank" rel="noopener" data-tooltip="View my research publications on Google Scholar">
+            <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" class="home__social-icon scholar"
+              target="_blank" rel="noopener" data-tooltip="View my research publications on Google Scholar">
               <i class="uil uil-graduation-cap"></i>
             </a>
 
-            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon instagram" target="_blank" rel="noopener" data-tooltip="Follow me on Instagram">
+            <a href="https://www.instagram.com/prxnxv10_05/?locale=id&hl=en" class="home__social-icon instagram"
+              target="_blank" rel="noopener" data-tooltip="Follow me on Instagram">
               <i class="uil uil-instagram"></i>
             </a>
           </div>
@@ -703,15 +169,16 @@
               xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
                 <filter id="pulse-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur">
-                        <animate attributeName="stdDeviation" begin="0s" dur="2s" values="5;10;5" keyTimes="0;0.5;1" repeatCount="indefinite" />
-                    </feGaussianBlur>
-                    <feFlood flood-color="var(--first-color)" result="flood"></feFlood>
-                    <feComposite in="flood" in2="blur" operator="in" result="glow"></feComposite>
-                    <feMerge>
-                        <feMergeNode in="glow"></feMergeNode>
-                        <feMergeNode in="SourceGraphic"></feMergeNode>
-                    </feMerge>
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur">
+                    <animate attributeName="stdDeviation" begin="0s" dur="2s" values="5;10;5" keyTimes="0;0.5;1"
+                      repeatCount="indefinite" />
+                  </feGaussianBlur>
+                  <feFlood flood-color="var(--first-color)" result="flood"></feFlood>
+                  <feComposite in="flood" in2="blur" operator="in" result="glow"></feComposite>
+                  <feMerge>
+                    <feMergeNode in="glow"></feMergeNode>
+                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                  </feMerge>
                 </filter>
               </defs>
               <mask id="mask0" mask-type="alpha">
@@ -724,7 +191,8 @@
                 <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346
                       165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403
                       129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028
-                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" filter="url(#pulse-glow)" />
+                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
+                  filter="url(#pulse-glow)" />
                 <image class="home__blob-img" x="-79" y="-46" xlink:href="assets/img/Pro.jpg" />
               </g>
             </svg>
@@ -732,10 +200,10 @@
           <div class="home__data">
             <h1 class="home__title">Hi, I'm Pranav H</h1>
             <h3 class="home__subtitle">
-             AI Enthusiast | Software Quality Advocate
+              AI Enthusiast | Software Quality Advocate
             </h3>
             <p class="home__description">
-              Passionate about leveraging AI to enhance software quality and reliability.  
+              Passionate about leveraging AI to enhance software quality and reliability.
             </p>
             <div class="home__buttons button__container" style="display: flex; gap: 1rem; margin-top: 1.5rem;">
               <a href="#contact" class="button button--flex button--custom-blue">
@@ -765,11 +233,14 @@
       <span class="section__subtitle">My introduction</span>
 
       <div class="about__container container grid">
-        <img src="assets\img\about.jpg" alt="" class="about__img" />
+        <img src="assets\img\about.jpg" alt="Pranav H Professional Headshot" class="about__img" />
 
         <div class="about__data">
           <p class="about__description">
-            I'm passionate about the intersection of AI and software quality, and I'm eager to use my background to contribute to high-quality software solutions. I have hands-on experience in data analysis, building intelligent systems, and working with LLMs and Generative AI to deliver scalable and reliable AI first products.
+            I'm passionate about the intersection of AI and software quality, and I'm eager to use my background to
+            contribute to high-quality software solutions. I have hands-on experience in data analysis, building
+            intelligent systems, and working with LLMs and Generative AI to deliver scalable and reliable AI first
+            products.
           </p>
 
           <div class="about__info">
@@ -779,14 +250,16 @@
             </div>
 
             <div>
-              <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">
+              <a href="https://github.com/Pranav-Nexus" target="_blank" rel="noopener"
+                style="color: inherit; text-decoration: none;">
                 <span class="about__info-title">30+</span>
                 <span class="about__info-name">Projects</span>
               </a>
             </div>
 
             <div>
-              <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">
+              <a href="https://scholar.google.com/citations?user=q8cW1AQAAAAJ" target="_blank" rel="noopener"
+                style="color: inherit; text-decoration: none;">
                 <span class="about__info-title">5+</span>
                 <span class="about__info-name">Publications</span>
               </a>
@@ -1065,7 +538,8 @@
               </div>
               <div class="skills__data">
                 <div class="skills__titles">
-                  <h3 class="skills__name">SEO & AI Search Engine Optimization (Google Search Console, Bing Webmaster Tools)</h3>
+                  <h3 class="skills__name">SEO & AI Search Engine Optimization (Google Search Console, Bing Webmaster
+                    Tools)</h3>
                 </div>
               </div>
               <div class="skills__data">
@@ -1085,17 +559,21 @@
       <span class="section__subtitle">My professional experience</span>
       <div class="experience__container container grid">
         <!-- Envestnet Experience -->
-        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+        <div class="experience__content experience__card"
+          style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
           <div style="flex-shrink: 0;">
             <a href="https://www.envestnet.com/" target="_blank" rel="noopener">
-              <img src="assets/img/Envestnet.jpg" alt="Envestnet Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
+              <img src="assets/img/Envestnet.jpg" alt="Envestnet Logo"
+                style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Quality Assurance Engineer</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Quality
+              Assurance Engineer</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
-                <a href="https://www.envestnet.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Envestnet</a>
+                <a href="https://www.envestnet.com/" target="_blank" rel="noopener"
+                  style="color: inherit; text-decoration: none;">Envestnet</a>
               </span>
               <span style="color: var(--text-color-light);"> · Full-time</span>
             </div>
@@ -1106,23 +584,30 @@
               India . Hybrid
             </div>
             <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
-              <b>Contributing to Envestnet's strategic AI-first testing initiative, specializing in the integration of Model Context Protocols (MCPs) and agentic workflows, by introducing advanced Playwright suites and AI monitoring, helping deliver the high-precision scaling and safety essential for critical financial transactions.</b>
+              <b>Contributing to Envestnet's strategic AI-first testing initiative, specializing in the integration of
+                Model Context Protocols (MCPs) and agentic workflows, by introducing advanced Playwright suites and AI
+                monitoring, helping deliver the high-precision scaling and safety essential for critical financial
+                transactions.</b>
             </div>
           </div>
         </div>
-        
+
         <!-- Future AGI Experience -->
-        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); position: relative; padding-bottom: 70px;">
+        <div class="experience__content experience__card"
+          style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); position: relative; padding-bottom: 70px;">
           <div style="flex-shrink: 0;">
             <a href="https://futureagi.com/" target="_blank" rel="noopener">
-              <img src="assets/img/fagi.jpg" alt="Future AGI Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
+              <img src="assets/img/fagi.jpg" alt="Future AGI Logo"
+                style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Founder's Office, Technology & Product</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Founder's
+              Office, Technology & Product</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
-                <a href="https://futureagi.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Future AGI</a>
+                <a href="https://futureagi.com/" target="_blank" rel="noopener"
+                  style="color: inherit; text-decoration: none;">Future AGI</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
@@ -1133,32 +618,48 @@
               Bengaluru, Karnataka, India · On-site
             </div>
             <div style="position: absolute; bottom: 20px; right: 20px;">
-              <a href="https://drive.google.com/file/d/1ZFfA6VwaY2VdN9zyWG3PpPhOjDaX0ISk/view?usp=sharing" target="_blank" rel="noopener" class="button button--flex button--small" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+              <a href="https://drive.google.com/file/d/1ZFfA6VwaY2VdN9zyWG3PpPhOjDaX0ISk/view?usp=sharing"
+                target="_blank" rel="noopener" class="button button--flex button--small"
+                style="display: inline-flex; align-items: center; gap: 0.5rem;">
                 <i class="uil uil-file-download-alt"></i>
                 View Completion Letter
               </a>
             </div>
             <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
-              <b>Drove product strategy and execution at the intersection of AI and early-stage innovation, delivering POCs, boosting user retention, and securing the company's first paid client.</b><br><br>
-              <b>Product Ownership & Execution:</b> Spearheaded the development of multiple product proof-of-concepts, working cross-functionally with product and engineering teams to validate hypotheses and accelerate decision-making. Initiated and built a Mixpanel analytics framework to enable data-informed iteration and measure user engagement effectively.<br><br>
-              <b>User Experience & Growth:</b> Revamped the onboarding experience using Appcues, resulting in notable improvements in user activation and retention. Authored detailed Product Requirement Documents (PRDs) and user documentation, aligning product workflows with user pain points and business needs to improve self-serve adoption.<br><br>
-              <b>Go-to-Market Impact:</b> Led end-to-end client demo creation, directly contributing to the acquisition of multiple pilot users and securing Future AGI's first paid client. Additionally, played a critical role during the press release launch by conducting pre-release QA and ensuring product stability during peak visibility.
+              <b>Drove product strategy and execution at the intersection of AI and early-stage innovation, delivering
+                POCs, boosting user retention, and securing the company's first paid client.</b><br><br>
+              <b>Product Ownership & Execution:</b> Spearheaded the development of multiple product proof-of-concepts,
+              working cross-functionally with product and engineering teams to validate hypotheses and accelerate
+              decision-making. Initiated and built a Mixpanel analytics framework to enable data-informed iteration and
+              measure user engagement effectively.<br><br>
+              <b>User Experience & Growth:</b> Revamped the onboarding experience using Appcues, resulting in notable
+              improvements in user activation and retention. Authored detailed Product Requirement Documents (PRDs) and
+              user documentation, aligning product workflows with user pain points and business needs to improve
+              self-serve adoption.<br><br>
+              <b>Go-to-Market Impact:</b> Led end-to-end client demo creation, directly contributing to the acquisition
+              of multiple pilot users and securing Future AGI's first paid client. Additionally, played a critical role
+              during the press release launch by conducting pre-release QA and ensuring product stability during peak
+              visibility.
             </div>
           </div>
         </div>
-        
+
         <!-- AVIVO Experience -->
-        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
+        <div class="experience__content experience__card"
+          style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07);">
           <div style="flex-shrink: 0;">
             <a href="https://avivo.ai/" target="_blank" rel="noopener">
-              <img src="assets/img/avivoai.jpg" alt="AVIVO AI Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
+              <img src="assets/img/avivoai.jpg" alt="AVIVO AI Logo"
+                style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Artificial Intelligence and Data Science Engineer</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Artificial
+              Intelligence and Data Science Engineer</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
-                <a href="https://avivo.ai/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">AVIVO</a>
+                <a href="https://avivo.ai/" target="_blank" rel="noopener"
+                  style="color: inherit; text-decoration: none;">AVIVO</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
@@ -1169,26 +670,37 @@
               Austin, Texas, United States · Remote
             </div>
             <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
-              <b>Engineered scalable generative AI infrastructure by integrating LLMs and vector databases, and led the development of an OCR-based medical document processing engine.</b><br><br>
-              <b>Technical Contributions:</b> Focused on optimizing vector databases such as ChromaDB and Pinecone to strengthen data retrieval for generative AI applications. Developed scalable solutions using LangChain and LlamaIndex, deploying them using AWS to ensure reliability and scalability.<br><br>
-              <b>System Development & Ownership:</b> Led the complete lifecycle development of an OCR-based Medical EOB processing engine, from system design to integration. Utilized AWS for deployment and JIRA for agile project tracking, ensuring continuous delivery and improvement.<br><br>
-              <b>AI Infrastructure & Deployment:</b> Integrated vector databases with LLM pipelines and optimized performance in cloud-based environments, ensuring seamless functionality and reduced latency in real-world use cases.
+              <b>Engineered scalable generative AI infrastructure by integrating LLMs and vector databases, and led the
+                development of an OCR-based medical document processing engine.</b><br><br>
+              <b>Technical Contributions:</b> Focused on optimizing vector databases such as ChromaDB and Pinecone to
+              strengthen data retrieval for generative AI applications. Developed scalable solutions using LangChain and
+              LlamaIndex, deploying them using AWS to ensure reliability and scalability.<br><br>
+              <b>System Development & Ownership:</b> Led the complete lifecycle development of an OCR-based Medical EOB
+              processing engine, from system design to integration. Utilized AWS for deployment and JIRA for agile
+              project tracking, ensuring continuous delivery and improvement.<br><br>
+              <b>AI Infrastructure & Deployment:</b> Integrated vector databases with LLM pipelines and optimized
+              performance in cloud-based environments, ensuring seamless functionality and reduced latency in real-world
+              use cases.
             </div>
           </div>
         </div>
-        
+
         <!-- ACC Experience -->
-        <div class="experience__content experience__card" style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); position: relative; padding-bottom: 70px;">
+        <div class="experience__content experience__card"
+          style="display: flex; gap: 20px; align-items: flex-start; background: var(--container-color); border-radius: 1rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); position: relative; padding-bottom: 70px;">
           <div style="flex-shrink: 0;">
             <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener">
-              <img src="assets/img/acc.jpg" alt="Applied Cloud Computing Logo" style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
+              <img src="assets/img/acc.jpg" alt="Applied Cloud Computing Logo"
+                style="width: 56px; height: 56px; object-fit: contain; border-radius: 8px;" />
             </a>
           </div>
           <div class="experience__data">
-            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Machine Learning Engineer</h3>
+            <h3 class="experience__title" style="font-size: 1.15rem; margin-bottom: 4px; font-weight: 600;">Machine
+              Learning Engineer</h3>
             <div style="color: var(--text-color); margin-bottom: 4px;">
               <span class="experience__subtitle" style="font-weight: 500;">
-                <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Applied Cloud Computing</a>
+                <a href="https://www.appliedcloudcomputing.com/" target="_blank" rel="noopener"
+                  style="color: inherit; text-decoration: none;">Applied Cloud Computing</a>
               </span>
               <span style="color: var(--text-color-light)"> · Internship</span>
             </div>
@@ -1199,16 +711,25 @@
               Mumbai, Maharashtra, India · On-site
             </div>
             <div style="position: absolute; bottom: 20px; right: 20px;">
-              <a href="https://drive.google.com/file/d/1yMiJPPaCFLM8VUDtGZJ1xJ9cepMBFAMa/view?usp=sharing" target="_blank" rel="noopener" class="button button--flex button--small" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+              <a href="https://drive.google.com/file/d/1yMiJPPaCFLM8VUDtGZJ1xJ9cepMBFAMa/view?usp=sharing"
+                target="_blank" rel="noopener" class="button button--flex button--small"
+                style="display: inline-flex; align-items: center; gap: 0.5rem;">
                 <i class="uil uil-file-download-alt"></i>
                 View Completion Letter
               </a>
             </div>
             <div class="experience__description" style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 0.5rem;">
-              <b>Delivered an end-to-end OCR solution for financial document analysis, contributing to automation and accuracy in customer data workflows.</b><br><br>
-              <b>Internship Impact:</b> Entrusted with a pivotal role in an OCR project. This initiative focused on automating the analysis of pay slips and bank statements, driving efficiency in financial data processing and enhancing customer interactions.<br><br>
-              <b>Collaborative Endeavors:</b> Throughout the internship, I thrived in collaborative environments, working alongside peers and interns to exchange insights and refine the model. Regular interactions with the project team enabled seamless progress tracking and hurdle resolution.<br><br>
-              <b>Internship Achievement:</b> The culmination of my internship marked a significant milestone as I successfully completed the development of the OCR model. This achievement empowers the project to move forward.
+              <b>Delivered an end-to-end OCR solution for financial document analysis, contributing to automation and
+                accuracy in customer data workflows.</b><br><br>
+              <b>Internship Impact:</b> Entrusted with a pivotal role in an OCR project. This initiative focused on
+              automating the analysis of pay slips and bank statements, driving efficiency in financial data processing
+              and enhancing customer interactions.<br><br>
+              <b>Collaborative Endeavors:</b> Throughout the internship, I thrived in collaborative environments,
+              working alongside peers and interns to exchange insights and refine the model. Regular interactions with
+              the project team enabled seamless progress tracking and hurdle resolution.<br><br>
+              <b>Internship Achievement:</b> The culmination of my internship marked a significant milestone as I
+              successfully completed the development of the OCR model. This achievement empowers the project to move
+              forward.
             </div>
           </div>
         </div>
@@ -1225,7 +746,9 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <h3 class="timeline-title">College</h3>
-            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a href="https://www.amrita.edu/campus/bengaluru" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Amrita Vishwa Vidhyapeetham, Banglore</a></div>
+            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a
+                href="https://www.amrita.edu/campus/bengaluru" target="_blank" rel="noopener"
+                style="color: inherit; text-decoration: none;">Amrita Vishwa Vidhyapeetham, Banglore</a></div>
             <div style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 0.5rem;">
               Aggregate CGPA: 9.11
             </div>
@@ -1244,11 +767,13 @@
                 <ul class="services__modal-services grid">
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>Studying core subjects of AI including DSA, Machine Learning, Design Analysis and of Algorithms, Operating systems, Computer architecture, Deep Learning, Reinforcement Learning.</p>
+                    <p>Studying core subjects of AI including DSA, Machine Learning, Design Analysis and of Algorithms,
+                      Operating systems, Computer architecture, Deep Learning, Reinforcement Learning.</p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
-                    <p>Treasurer (Jan – June, 2024), Sergeant at Arms (July – Dec, 2023), Toastmaster Amrita Bengaluru</p>
+                    <p>Treasurer (Jan – June, 2024), Sergeant at Arms (July – Dec, 2023), Toastmaster Amrita Bengaluru
+                    </p>
                   </li>
                   <li class="services__modal-service">
                     <i class="uil uil-check-circle services__modal-icon"></i>
@@ -1268,7 +793,9 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <h3 class="timeline-title">GRADE XII</h3>
-            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a href="https://www.narayanajuniorcolleges.com/maharashtra/thane-west/" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">Narayana Junior College</a></div>
+            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a
+                href="https://www.narayanajuniorcolleges.com/maharashtra/thane-west/" target="_blank" rel="noopener"
+                style="color: inherit; text-decoration: none;">Narayana Junior College</a></div>
             <div class="timeline-board" style="margin-bottom: 0.5rem;">Maharashtra H.S.C Board</div>
             <div style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 0.5rem;">
               Scored 91%
@@ -1300,7 +827,10 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <h3 class="timeline-title">GRADE X</h3>
-            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a href="https://www.nhpsairoli.com/?utm_source=GMB&utm_medium=Organic&utm_campaign=Website" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">New Horizon Public School</a></div>
+            <div class="timeline-school" style="margin-bottom: 0.5rem;"><a
+                href="https://www.nhpsairoli.com/?utm_source=GMB&utm_medium=Organic&utm_campaign=Website"
+                target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">New Horizon Public
+                School</a></div>
             <div class="timeline-board" style="margin-bottom: 0.5rem;">C.B.S.E</div>
             <div style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 0.5rem;">
               Scored 95%
@@ -1367,6 +897,7 @@
           0% {
             transform: translateX(0);
           }
+
           100% {
             transform: translateX(-2208px);
           }
@@ -1379,7 +910,7 @@
         .certification__card {
           background: var(--container-color);
           border-radius: 1rem;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
           padding: 1.5rem;
           width: 320px;
           min-width: 320px;
@@ -1390,7 +921,7 @@
         }
 
         .certification__card:hover {
-          box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
         .certification__card img {
@@ -1398,7 +929,7 @@
           max-width: 260px;
           border-radius: 0.5rem;
           margin-bottom: 1rem;
-          box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
         }
 
         .certification__card a:first-of-type {
@@ -1458,48 +989,62 @@
         <div class="certifications__carousel-track" id="certsTrack">
           <!-- IBM AI Engineering Professional Certificate -->
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/IBM AI Engineering Professional Certificate.jpg" alt="IBM AI Engineering Professional Certificate" />
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/IBM AI Engineering Professional Certificate.jpg"
+                alt="IBM AI Engineering Professional Certificate" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank"
+              rel="noopener" class="certification__card-title">
               IBM AI Engineering Professional Certificate
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <!-- Introduction to Generative AI: Google Cloud -->
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Introduction to Generative AI.jpg" alt="Introduction to Generative AI: Google Cloud" />
+            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Introduction to Generative AI.jpg"
+                alt="Introduction to Generative AI: Google Cloud" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank"
+              rel="noopener" class="certification__card-title">
               Introduction to Generative AI: Google Cloud
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <!-- Introduction to Data Analytics in Google Cloud -->
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Introduction to Data Analytics in Google Cloud.jpg" alt="Introduction to Data Analytics in Google Cloud" />
+            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Introduction to Data Analytics in Google Cloud.jpg"
+                alt="Introduction to Data Analytics in Google Cloud" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank"
+              rel="noopener" class="certification__card-title">
               Introduction to Data Analytics in Google Cloud
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <!-- Google Project Management Professional Certificate (v2) -->
           <div class="certification__card">
-            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Google Project Management Professional Certificate (v2).jpg" alt="Google Project Management Professional Certificate (v2)" />
+            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile"
+              target="_blank" rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Google Project Management Professional Certificate (v2).jpg"
+                alt="Google Project Management Professional Certificate (v2)" />
             </a>
-            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile"
+              target="_blank" rel="noopener" class="certification__card-title">
               Google Project Management Professional Certificate (v2)
             </a>
             <div class="certification__card-source">Google / Coursera</div>
           </div>
           <!-- Software Testing Foundations: Test Techniques - CompTIA -->
           <div class="certification__card">
-            <a href="https://www.linkedin.com/learning/certificates/b914019a4a864b86e156b82138567ef94df7e785d7eefc4ea718491d88f54103?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BtSweIiWnTCWxYKL0sBOKIg%3D%3D" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/CompTIA_Software_Testing_Foundations_Test_Techniques.jpg" alt="Software Testing Foundations: Test Techniques - CompTIA" />
+            <a href="https://www.linkedin.com/learning/certificates/b914019a4a864b86e156b82138567ef94df7e785d7eefc4ea718491d88f54103?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BtSweIiWnTCWxYKL0sBOKIg%3D%3D"
+              target="_blank" rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/CompTIA_Software_Testing_Foundations_Test_Techniques.jpg"
+                alt="Software Testing Foundations: Test Techniques - CompTIA" />
             </a>
             <a href="https://www.comptia.org/" target="_blank" rel="noopener" class="certification__card-title">
               Software Testing Foundations: Test Techniques (CompTIA)
@@ -1508,8 +1053,10 @@
           </div>
           <!-- Software Testing Foundations: Test Techniques - NASBA -->
           <div class="certification__card">
-            <a href="https://www.linkedin.com/learning/certificates/b914019a4a864b86e156b82138567ef94df7e785d7eefc4ea718491d88f54103?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BtSweIiWnTCWxYKL0sBOKIg%3D%3D" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/NASBA_Software_Testing_Foundations_Test_Techniques.jpg" alt="Software Testing Foundations: Test Techniques - NASBA" />
+            <a href="https://www.linkedin.com/learning/certificates/b914019a4a864b86e156b82138567ef94df7e785d7eefc4ea718491d88f54103?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BtSweIiWnTCWxYKL0sBOKIg%3D%3D"
+              target="_blank" rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/NASBA_Software_Testing_Foundations_Test_Techniques.jpg"
+                alt="Software Testing Foundations: Test Techniques - NASBA" />
             </a>
             <a href="https://www.nasba.org/" target="_blank" rel="noopener" class="certification__card-title">
               Software Testing Foundations: Test Techniques (NASBA)
@@ -1518,37 +1065,49 @@
           </div>
           <!-- Duplicate set for seamless infinite loop (offset to prevent simultaneous duplicates) -->
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/IBM AI Engineering Professional Certificate.jpg" alt="IBM AI Engineering Professional Certificate" />
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/IBM AI Engineering Professional Certificate.jpg"
+                alt="IBM AI Engineering Professional Certificate" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UUGN9K213BRN" target="_blank"
+              rel="noopener" class="certification__card-title">
               IBM AI Engineering Professional Certificate
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Introduction to Generative AI.jpg" alt="Introduction to Generative AI: Google Cloud" />
+            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Introduction to Generative AI.jpg"
+                alt="Introduction to Generative AI: Google Cloud" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/verify/VI0440XQ6DKA" target="_blank"
+              rel="noopener" class="certification__card-title">
               Introduction to Generative AI: Google Cloud
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <div class="certification__card">
-            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Introduction to Data Analytics in Google Cloud.jpg" alt="Introduction to Data Analytics in Google Cloud" />
+            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank"
+              rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Introduction to Data Analytics in Google Cloud.jpg"
+                alt="Introduction to Data Analytics in Google Cloud" />
             </a>
-            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.coursera.org/account/accomplishments/verify/SN78KRCALVMK" target="_blank"
+              rel="noopener" class="certification__card-title">
               Introduction to Data Analytics in Google Cloud
             </a>
             <div class="certification__card-source">Coursera</div>
           </div>
           <div class="certification__card">
-            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Google Project Management Professional Certificate (v2).jpg" alt="Google Project Management Professional Certificate (v2)" />
+            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile"
+              target="_blank" rel="noopener" style="display: block; width: 100%;">
+              <img src="assets/img/Google Project Management Professional Certificate (v2).jpg"
+                alt="Google Project Management Professional Certificate (v2)" />
             </a>
-            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile" target="_blank" rel="noopener" class="certification__card-title">
+            <a href="https://www.credly.com/badges/8f5363c5-fec7-411e-86b7-d14742ef247b/linked_in_profile"
+              target="_blank" rel="noopener" class="certification__card-title">
               Google Project Management Professional Certificate (v2)
             </a>
             <div class="certification__card-source">Google / Coursera</div>
@@ -1556,7 +1115,8 @@
           <!-- Software Testing Foundations: Test Techniques - CompTIA (Duplicate) -->
           <div class="certification__card">
             <a href="https://www.comptia.org/" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Software Testing Foundations CompTIA.jpg" alt="Software Testing Foundations: Test Techniques - CompTIA" />
+              <img src="assets/img/Software Testing Foundations CompTIA.jpg"
+                alt="Software Testing Foundations: Test Techniques - CompTIA" />
             </a>
             <a href="https://www.comptia.org/" target="_blank" rel="noopener" class="certification__card-title">
               Software Testing Foundations: Test Techniques (CompTIA)
@@ -1566,7 +1126,8 @@
           <!-- Software Testing Foundations: Test Techniques - NASBA (Duplicate) -->
           <div class="certification__card">
             <a href="https://www.nasba.org/" target="_blank" rel="noopener" style="display: block; width: 100%;">
-              <img src="assets/img/Software Testing Foundations NASBA.jpg" alt="Software Testing Foundations: Test Techniques - NASBA" />
+              <img src="assets/img/Software Testing Foundations NASBA.jpg"
+                alt="Software Testing Foundations: Test Techniques - NASBA" />
             </a>
             <a href="https://www.nasba.org/" target="_blank" rel="noopener" class="certification__card-title">
               Software Testing Foundations: Test Techniques (NASBA)
@@ -1628,22 +1189,28 @@
         <div class="swiper-wrapper">
           <!-- Project 1 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio5.png" class="portfolio__img" alt="On-Device Translation Project Screenshot" />
+            <img src="assets/img/portfolio5.png" class="portfolio__img"
+              alt="On-Device Translation Project Screenshot" />
             <div class="portfolio__data">
               <h3 class="portfolio__title">On-Device Translation of Dynamically Typed & Interpreted Languages</h3>
               <p class="portfolio__description">
-                A novel approach to translate between programming languages without a common kernel. Enables seamless code conversion and collaboration between different language ecosystems.<br><br>
+                A novel approach to translate between programming languages without a common kernel. Enables seamless
+                code conversion and collaboration between different language ecosystems.<br><br>
                 <strong>Key Features:</strong><br>
                 • Real-time translation between Python and JavaScript<br>
                 • Preserves code semantics and functionality<br>
                 • Handles dynamic typing and interpretation<br><br>
-                <strong>Publication:</strong> 15th International Conference on Computing, Communication and Networking Technologies (IIT Mandi)
+                <strong>Publication:</strong> 15th International Conference on Computing, Communication and Networking
+                Technologies (IIT Mandi)
               </p>
-              <a href="https://github.com/Pranav-Nexus/On-Device-Translation-of-Dynamically-Typed-Interpreted-Languages" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
+              <a href="https://github.com/Pranav-Nexus/On-Device-Translation-of-Dynamically-Typed-Interpreted-Languages"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
-              <a href="https://ieeexplore.ieee.org/document/10724883" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener" style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
+              <a href="https://ieeexplore.ieee.org/document/10724883"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener"
+                style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
                 Publication
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1656,18 +1223,23 @@
             <div class="portfolio__data">
               <h3 class="portfolio__title">HTTP C2 Analysis and Detection Using MongoDB</h3>
               <p class="portfolio__description">
-                Enhanced cybersecurity framework integrating advanced C2 and TLS detection techniques with MongoDB.<br><br>
+                Enhanced cybersecurity framework integrating advanced C2 and TLS detection techniques with
+                MongoDB.<br><br>
                 <strong>Key Features:</strong><br>
                 • Real-time traffic analysis<br>
                 • Advanced pattern detection<br>
                 • MongoDB integration for efficient data processing<br><br>
-                <strong>Publication:</strong> 3rd International Conference on Advances in Computing, Communication and Applied Informatics, 2024
+                <strong>Publication:</strong> 3rd International Conference on Advances in Computing, Communication and
+                Applied Informatics, 2024
               </p>
-              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
+              <a href="https://github.com/Pranav-Nexus/HTTP-C2-Detection-and-Analysis-using-MongoDB"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
-              <a href="https://ieeexplore.ieee.org/document/10602244" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener" style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
+              <a href="https://ieeexplore.ieee.org/document/10602244"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener"
+                style="margin-left: 0.5rem; background: #f39c12; color: #fff;">
                 Publication
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1676,18 +1248,21 @@
 
           <!-- Project 3 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio2.png" class="portfolio__img" alt="Target Preserved Image Generation Project Screenshot" />
+            <img src="assets/img/portfolio2.png" class="portfolio__img"
+              alt="Target Preserved Image Generation Project Screenshot" />
             <div class="portfolio__data">
               <h3 class="portfolio__title">Target-Preserved Image Generation</h3>
               <p class="portfolio__description">
-                Advanced AI system for generating customized images from text prompts while maintaining specific features.<br><br>
+                Advanced AI system for generating customized images from text prompts while maintaining specific
+                features.<br><br>
                 <strong>Key Features:</strong><br>
                 • Precise feature transfer<br>
                 • Position-aware generation<br>
                 • Custom attribute preservation<br>
                 • High-quality output generation
               </p>
-              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
+              <a href="https://github.com/Pranav-Nexus/Target-Preserved-Image-Generation"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1700,14 +1275,16 @@
             <div class="portfolio__data">
               <h3 class="portfolio__title">TRASIS: An Algorithmic Trading Bot</h3>
               <p class="portfolio__description">
-                Advanced trading system leveraging algorithmic strategies for market analysis and automated trading.<br><br>
+                Advanced trading system leveraging algorithmic strategies for market analysis and automated
+                trading.<br><br>
                 <strong>Key Features:</strong><br>
                 • Moving average-based analysis<br>
                 • Automated trading execution<br>
                 • Market inefficiency detection<br>
                 • Real-time trend analysis
               </p>
-              <a href="https://github.com/Pranav-Nexus/TRASIS" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
+              <a href="https://github.com/Pranav-Nexus/TRASIS"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1716,7 +1293,8 @@
 
           <!-- Project 5 -->
           <div class="portfolio__content grid swiper-slide">
-            <img src="assets/img/portfolio4.png" class="portfolio__img" alt="Network Intrusion Detection System Project Screenshot" />
+            <img src="assets/img/portfolio4.png" class="portfolio__img"
+              alt="Network Intrusion Detection System Project Screenshot" />
             <div class="portfolio__data">
               <h3 class="portfolio__title">Network Intrusion Detection System</h3>
               <p class="portfolio__description">
@@ -1727,7 +1305,8 @@
                 • Pattern recognition and analysis<br>
                 • Advanced classification techniques
               </p>
-              <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning" class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
+              <a href="https://github.com/Pranav-Nexus/Network-Intrusion-Detection-System-implemented-using-Machine-Learning"
+                class="button button--flex button--small portfolio__button" target="_blank" rel="noopener">
                 GitHub Repository
                 <i class="uil uil-external-link-alt button__icon"></i>
               </a>
@@ -1755,15 +1334,23 @@
       <div class="blog__container container" style="display: flex; flex-direction: column; align-items: flex-start;">
         <div class="blog__content" style="width: 100%;">
           <p class="blog__description">
-            I write about technology, artificial intelligence, and my experiences in the field. Follow my journey through my blogs where I share insights, tutorials, and thoughts on the latest developments in AI, technology and my experiences.
+            I write about technology, artificial intelligence, and my experiences in the field. Follow my journey
+            through my blogs where I share insights, tutorials, and thoughts on the latest developments in AI,
+            technology and my experiences.
           </p>
           <div style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center; width: 100%;">
-            <a href="https://nexussss.substack.com/" target="_blank" rel="noopener" class="button button--flex button--small blog__button" style="display: flex; align-items: center; gap: 0.5rem;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/substack.svg" alt="Substack Logo" style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
+            <a href="https://nexussss.substack.com/" target="_blank" rel="noopener"
+              class="button button--flex button--small blog__button"
+              style="display: flex; align-items: center; gap: 0.5rem;">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/substack.svg" alt="Substack Logo"
+                style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
               Substack
             </a>
-            <a href="https://medium.com/@pranav.03.h" target="_blank" rel="noopener" class="button button--flex button--small blog__button" style="display: flex; align-items: center; gap: 0.5rem;">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium Logo" style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
+            <a href="https://medium.com/@pranav.03.h" target="_blank" rel="noopener"
+              class="button button--flex button--small blog__button"
+              style="display: flex; align-items: center; gap: 0.5rem;">
+              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/medium.svg" alt="Medium Logo"
+                style="width: 20px; height: 20px; background: #fff; border-radius: 3px; padding: 2px;" />
               Medium
             </a>
           </div>
@@ -1842,7 +1429,8 @@
   <!--================== Footer ===============-->
   <footer class="footer">
     <div class="footer__bg">
-      <div class="footer__container" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem 0;">
+      <div class="footer__container"
+        style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; padding: 2rem 0;">
         <h1 class="footer__title" style="margin-bottom: 0.25rem;">Pranav</h1>
         <span class="footer__subtitle" style="margin-bottom: 1rem;">AI and Product Enthusiast</span>
         <ul class="footer__links" style="display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0;">
@@ -1851,7 +1439,8 @@
           <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
           <li><a href="#contact" class="footer__link">Contact&#8209;Me</a></li>
         </ul>
-        <p class="footer__copy" style="margin-top: 1rem; color: var(--text-color-light); font-size: 1rem;">&copy; Copyright : PRANAV H</p>
+        <p class="footer__copy" style="margin-top: 1rem; color: var(--text-color-light); font-size: 1rem;">&copy;
+          Copyright : PRANAV H</p>
       </div>
     </div>
   </footer>
@@ -1864,14 +1453,14 @@
   <script type="text/javascript" src="assets/swiper-bundle.min.js"></script>
   <script src="https://kit.fontawesome.com/2205d59d52.js" crossorigin="anonymous"></script>
   <script src="assets/ptj.js"></script>
-  
+
   <!-- EmailJS Configuration -->
   <script type="text/javascript">
-    (function() {
+    (function () {
       emailjs.init("_eBL3jCsJTgrX03g6"); // Add your EmailJS user ID here
     })();
 
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
       event.preventDefault();
 
       // Get form data
@@ -1890,98 +1479,98 @@
 
       // Send email using EmailJS
       emailjs.send('service_d0nt1mc', 'template_3vu55q8', templateParams)
-        .then(function(response) {
+        .then(function (response) {
           console.log('SUCCESS!', response.status, response.text);
           alert('Message sent successfully!');
           document.getElementById('contact-form').reset();
-        }, function(error) {
+        }, function (error) {
           console.log('FAILED...', error);
           alert('Failed to send message. Please try again.');
         });
     });
 
     // Typing effect for Home title
-    document.addEventListener('DOMContentLoaded', function() {
-       const titleElement = document.querySelector('.home__title');
-       const phrases = [
+    document.addEventListener('DOMContentLoaded', function () {
+      const titleElement = document.querySelector('.home__title');
+      const phrases = [
         "Hi, I'm Pranav H",
         "AI + Product Lover",
         "Making Gen AI Work",
         "I Build with Vision",
         "I love to code.py"
-       ];
-       let phraseIndex = 0;
-       let charIndex = 0;
-       const typingSpeed = 70; // milliseconds per character
-       const erasingSpeed = 50; // milliseconds per character
-       const pauseTime = 1500; // milliseconds to pause between phrases
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      const typingSpeed = 70; // milliseconds per character
+      const erasingSpeed = 50; // milliseconds per character
+      const pauseTime = 1500; // milliseconds to pause between phrases
 
-       // Initial setup: clear the existing title content
-       titleElement.textContent = '';
-       const cursorSpan = document.createElement('span');
-       cursorSpan.classList.add('typing-cursor');
-       titleElement.appendChild(cursorSpan);
-       
-       // Start the typing animation sequence
-       setTimeout(type, 500); // Initial delay before typing starts
+      // Initial setup: clear the existing title content
+      titleElement.textContent = '';
+      const cursorSpan = document.createElement('span');
+      cursorSpan.classList.add('typing-cursor');
+      titleElement.appendChild(cursorSpan);
 
-       function type() {
-         if (charIndex < phrases[phraseIndex].length) {
-           // Typing
-           titleElement.textContent = phrases[phraseIndex].substring(0, charIndex + 1);
-           charIndex++;
-           // Re-append cursor after updating textContent
-           if (!titleElement.querySelector('.typing-cursor')) {
-              titleElement.appendChild(cursorSpan);
-           }
-           setTimeout(type, typingSpeed);
-         } else {
-           // Typing complete, now pause and start erasing
-           // Remove cursor temporarily for pause
-           if (titleElement.querySelector('.typing-cursor')) {
-              titleElement.querySelector('.typing-cursor').remove();
-           }
-           setTimeout(erase, pauseTime);
-         }
-       }
+      // Start the typing animation sequence
+      setTimeout(type, 500); // Initial delay before typing starts
 
-       function erase() {
-         if (charIndex > 0) {
-           // Erasing
-           titleElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
-           charIndex--;
-            // Re-append cursor after updating textContent
-           if (!titleElement.querySelector('.typing-cursor')) {
-              titleElement.appendChild(cursorSpan);
-           }
-           setTimeout(erase, erasingSpeed);
-         } else {
-           // Erasing complete, move to next phrase and start typing
-           phraseIndex = (phraseIndex + 1) % phrases.length; // Cycle through phrases
-           // Ensure cursor is present before typing starts
-           if (!titleElement.querySelector('.typing-cursor')) {
-              titleElement.appendChild(cursorSpan);
-           }
-           setTimeout(type, typingSpeed);
-         }
-       }
+      function type() {
+        if (charIndex < phrases[phraseIndex].length) {
+          // Typing
+          titleElement.textContent = phrases[phraseIndex].substring(0, charIndex + 1);
+          charIndex++;
+          // Re-append cursor after updating textContent
+          if (!titleElement.querySelector('.typing-cursor')) {
+            titleElement.appendChild(cursorSpan);
+          }
+          setTimeout(type, typingSpeed);
+        } else {
+          // Typing complete, now pause and start erasing
+          // Remove cursor temporarily for pause
+          if (titleElement.querySelector('.typing-cursor')) {
+            titleElement.querySelector('.typing-cursor').remove();
+          }
+          setTimeout(erase, pauseTime);
+        }
+      }
+
+      function erase() {
+        if (charIndex > 0) {
+          // Erasing
+          titleElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+          charIndex--;
+          // Re-append cursor after updating textContent
+          if (!titleElement.querySelector('.typing-cursor')) {
+            titleElement.appendChild(cursorSpan);
+          }
+          setTimeout(erase, erasingSpeed);
+        } else {
+          // Erasing complete, move to next phrase and start typing
+          phraseIndex = (phraseIndex + 1) % phrases.length; // Cycle through phrases
+          // Ensure cursor is present before typing starts
+          if (!titleElement.querySelector('.typing-cursor')) {
+            titleElement.appendChild(cursorSpan);
+          }
+          setTimeout(type, typingSpeed);
+        }
+      }
     });
 
     // Close modals when clicking outside
-    document.addEventListener('click', function(event) {
-        const modals = document.querySelectorAll('.services__modal');
-        const modalContent = document.querySelector('.services__modal-content'); // Assuming only one modal is open at a time or we want to target the first found open one
-        const isClickInsideModalContent = modalContent && modalContent.contains(event.target);
-        const isClickOnModalButton = event.target.closest('.services__button');
+    document.addEventListener('click', function (event) {
+      const modals = document.querySelectorAll('.services__modal');
+      const modalContent = document.querySelector('.services__modal-content'); // Assuming only one modal is open at a time or we want to target the first found open one
+      const isClickInsideModalContent = modalContent && modalContent.contains(event.target);
+      const isClickOnModalButton = event.target.closest('.services__button');
 
-        if (!isClickInsideModalContent && !isClickOnModalButton) {
-            modals.forEach(modal => {
-                modal.classList.remove('active-modal');
-            });
-        }
-    
+      if (!isClickInsideModalContent && !isClickOnModalButton) {
+        modals.forEach(modal => {
+          modal.classList.remove('active-modal');
         });
-      </script>
-    </body>
+      }
 
-    </html>          
+    });
+  </script>
+</body>
+
+</html>
